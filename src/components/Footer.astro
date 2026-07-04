@@ -37,5 +37,16 @@ import { site } from "../data/site";
   <div class="border-t border-white/10 text-center text-xs text-white/40 py-4 space-y-1">
     <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
     <p>Site updated {new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" })}</p>
+    <p>
+      Powered by{" "}
+      <a
+        href="https://nobleleads.uk"
+        class="text-white/50 transition-colors hover:text-white/70"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Noble<span class="text-[#C5A55A]">Leads</span>
+      </a>
+    </p>
   </div>
 </footer>

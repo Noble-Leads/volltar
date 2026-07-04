@@ -1,10 +1,10 @@
 export const site = {
   name: "Volltar",
   tagline: "DIY & Home Improvements",
-  phone: "[PHONE NUMBER]",
-  phoneHref: "tel:+44",
-  whatsappHref: "https://wa.me/44",
-  email: "[EMAIL ADDRESS]",
+  phone: "+44 7404 868410",
+  phoneHref: "tel:+447404868410",
+  whatsappHref: "https://wa.me/447404868410",
+  email: "hubert@volltar.co.uk",
   areas: ["Chesterfield", "Wellingborough", "Leicester"],
   moreAreas: ["Mansfield", "Northampton", "Corby", "Derby", "Nottingham"],
   areaBlurb:
