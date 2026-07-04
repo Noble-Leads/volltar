@@ -1,0 +1,13 @@
+<script>
+  import { initSiteMotion } from "../lib/motion/initSiteMotion";
+
+  function boot() {
+    initSiteMotion();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
+</script>

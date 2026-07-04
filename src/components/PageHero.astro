@@ -1,0 +1,20 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  /** Compact hero for form-heavy pages like contact. */
+  compact?: boolean;
+}
+
+const { eyebrow, title, description, compact = false } = Astro.props;
+---
+
+<section class="bg-volltar-black text-white spark-glow">
+  <div class:list={["mx-auto max-w-6xl px-4", compact ? "py-12 md:py-14" : "py-16 md:py-20"]}>
+    {eyebrow && <p class="text-volltar-orange font-semibold mb-3">{eyebrow}</p>}
+    <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight max-w-3xl">{title}</h1>
+    <p class="text-white/70 mt-4 max-w-2xl text-lg">{description}</p>
+    <slot />
+  </div>
+</section>

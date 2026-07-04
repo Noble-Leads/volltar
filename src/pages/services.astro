@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ServiceDetail from "../components/ServiceDetail.astro";
+import FAQList from "../components/FAQList.astro";
+import CTABanner from "../components/CTABanner.astro";
+import PortfolioCard from "../components/PortfolioCard.astro";
+import { services, featuredService, standardServices } from "../data/services";
+import { servicesFAQ } from "../data/faq";
+import { portfolioJobs } from "../data/portfolio";
+import { site } from "../data/site";
+
+const relatedJobs = portfolioJobs.slice(0, 2);
+---
+
+<BaseLayout
+  title="Handyman Services"
+  description={`Sockets, lighting, loft work, CCTV and general home improvements across ${site.areas.join(", ")} and the East Midlands. Smart home and CCTV is our specialty.`}
+>
+  <PageHero
+    eyebrow="Services"
+    title="Home improvements done properly"
+    description="Sockets, lighting, loft work, CCTV and general handyman jobs across the East Midlands. Smart home and security is the specialty."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="max-w-2xl mb-10">
+      <h2 class="text-2xl font-bold">Specialty</h2>
+      <p class="text-black/60 mt-2">Lighting, smart home and CCTV — the work I put the most care into.</p>
+    </div>
+    <ServiceDetail service={featuredService} expanded />
+
+    <div class="max-w-2xl mt-16 mb-10">
+      <h2 class="text-2xl font-bold">Everything else</h2>
+      <p class="text-black/60 mt-2">General home improvement, finished tidily. If it is not listed, ask anyway.</p>
+    </div>
+    <div class="space-y-6">
+      {standardServices.map((service) => <ServiceDetail service={service} expanded />)}
+    </div>
+  </section>
+
+  <FAQList
+    items={servicesFAQ}
+    title="Services FAQ"
+    description="Common questions about the kind of work I take on."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
+      <div>
+        <h2 class="text-2xl font-bold">See it in practice</h2>
+        <p class="text-black/60 mt-1">Case studies with photos from real jobs.</p>
+      </div>
+      <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline">All case studies &rarr;</a>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {relatedJobs.map((job) => <PortfolioCard job={job} />)}
+    </div>
+  </section>
+
+  <CTABanner
+    title="Got a job in mind?"
+    description="Tell me what you need and I will let you know what is involved and what it will cost."
+  />
+</BaseLayout>

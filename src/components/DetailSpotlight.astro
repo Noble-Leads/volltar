@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import socketCabling from "../assets/detail/socket-cabling.jpg";
+
+interface Props {
+  /** Flip image/text on large screens. */
+  reverse?: boolean;
+  class?: string;
+}
+
+const { reverse = false, class: className } = Astro.props;
+---
+
+<section class:list={["mx-auto max-w-6xl px-4 py-16 md:py-20", className]}>
+  <div
+    class:list={[
+      "grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16",
+      reverse && "md:[&>*:first-child]:order-2",
+    ]}
+    data-reveal
+  >
+    <div class="relative">
+      <figure class="relative overflow-hidden rounded-2xl border border-black/10 bg-volltar-charcoal shadow-lg">
+        <Image
+          src={socketCabling}
+          alt="Neatly dressed cabling inside a double socket back box before the faceplate goes on"
+          class="w-full aspect-[4/3] object-cover"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+
+    <div>
+      <h2 class="font-display text-2xl md:text-3xl font-bold leading-tight">
+        Neat work behind the faceplate too.
+      </h2>
+      <p class="mt-4 text-black/70 leading-relaxed">
+        Cables dressed properly inside back boxes, runs labelled in lofts and comms cupboards, channels filled
+        after chasing. The sort of detail you will not notice day to day — but it matters when someone opens it
+        up again.
+      </p>
+    </div>
+  </div>
+</section>

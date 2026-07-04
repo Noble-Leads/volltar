@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import CTABanner from "../../components/CTABanner.astro";
+import { getCollection } from "astro:content";
+import { plannedBlogPosts } from "../../data/plannedBlog";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Home Improvement Tips & Guides"
+  description="In-depth guides on CCTV, loft hatches, outdoor security lighting and home improvements across the East Midlands."
+>
+  <PageHero
+    eyebrow="Blog"
+    title="Guides written from real jobs"
+    description="Proper, search-friendly articles on the work Volltar actually does — tied to case studies and photos from site, not generic filler."
+  />
+
+  <section class="mx-auto max-w-4xl px-4 py-16 md:py-20">
+    {
+      posts.length > 0 ? (
+        <div class="space-y-6">
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              class="group block rounded-xl border border-black/10 bg-white p-6 hover:border-volltar-orange/50 hover:shadow-lg transition-all"
+            >
+              <p class="text-xs text-black/50">
+                {post.data.pubDate.toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+              <h2 class="font-display text-xl font-bold mt-1 group-hover:text-volltar-orange transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-black/70 mt-2">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="rounded-2xl border border-black/10 bg-white p-8 md:p-10">
+          <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Coming soon</p>
+          <p class="font-display text-xl font-bold mt-2">First guides are being written now</p>
+          <p class="text-black/65 mt-3 leading-relaxed max-w-2xl">
+            Proper local articles on CCTV, loft hatches and outdoor lighting — each linked to a real case study
+            with photos. The site already has written-up jobs in the{" "}
+            <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline">portfolio</a> if you
+            want to see how Volltar works before the guides go live.
+          </p>
+
+          <div class="mt-8 pt-8 border-t border-black/10">
+            <p class="text-sm font-semibold text-black/80">Planned first articles</p>
+            <ul class="mt-4 space-y-4">
+              {plannedBlogPosts.map((planned) => (
+                <li class="flex gap-3 text-sm">
+                  <span class="text-volltar-orange shrink-0 mt-0.5">&#9679;</span>
+                  <div>
+                    <p class="font-semibold text-volltar-black">{planned.title}</p>
+                    <p class="text-black/60 mt-0.5 leading-relaxed">{planned.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+  </section>
+
+  <CTABanner
+    title="Need help with one of these now?"
+    description="You do not have to wait for the article — get in touch and we can talk through your job."
+    buttonText="Get a Quote"
+  />
+</BaseLayout>

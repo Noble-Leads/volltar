@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import FAQList from "../components/FAQList.astro";
+import AreasStrip from "../components/AreasStrip.astro";
+import AvailabilityNotice from "../components/AvailabilityNotice.astro";
+import { Image } from "astro:assets";
+import hubertContact from "../assets/hubert-contact.png";
+import { site } from "../data/site";
+import { contactFAQ } from "../data/faq";
+---
+
+<BaseLayout
+  title="Contact & Get a Quote"
+  description="Get in touch about a handyman or home improvement job in Chesterfield, Leicester, Wellingborough and the East Midlands. Phone, WhatsApp, email or contact form."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Get a quote or ask a question"
+    description="Tell me a bit about the job and I will get back to you with next steps. Photos are always helpful if you can send them."
+    compact
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid lg:grid-cols-5 gap-10">
+      <form
+        action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+        method="POST"
+        class="lg:col-span-3 space-y-4 bg-white border border-black/10 rounded-xl p-6 md:p-8 shadow-sm"
+      >
+        <div>
+          <h2 class="text-xl font-bold">Send a message</h2>
+          <p class="text-sm text-black/60 mt-1">{site.replyTime}</p>
+        </div>
+        <div>
+          <label for="name" class="block text-sm font-semibold mb-1">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            class="w-full rounded-md border border-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-volltar-orange"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            class="w-full rounded-md border border-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-volltar-orange"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-semibold mb-1">Phone (optional)</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            class="w-full rounded-md border border-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-volltar-orange"
+          />
+        </div>
+        <div>
+          <label for="postcode" class="block text-sm font-semibold mb-1">Postcode (optional)</label>
+          <input
+            id="postcode"
+            name="postcode"
+            type="text"
+            class="w-full rounded-md border border-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-volltar-orange"
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-semibold mb-1">What do you need done?</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            placeholder="Describe the job, how many sockets/lights, any access issues, etc."
+            class="w-full rounded-md border border-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-volltar-orange"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-volltar-orange text-volltar-black font-semibold px-6 py-3 rounded-md hover:bg-volltar-orange-light transition-colors"
+        >
+          Send Message
+        </button>
+      </form>
+
+      <div class="lg:col-span-2 space-y-6">
+        <div class="flex overflow-hidden rounded-xl border border-black/10 bg-volltar-black shadow-sm">
+          <Image
+            src={hubertContact}
+            alt="Hubert, handyman at Volltar"
+            class="w-24 sm:w-32 shrink-0 object-cover object-[center_20%]"
+            widths={[128, 256]}
+            width={128}
+            height={160}
+            loading="lazy"
+          />
+          <div class="p-5 flex flex-col justify-center min-w-0">
+            <p class="font-semibold text-white">You will hear back from Hubert</p>
+            <p class="text-sm text-white/70 mt-1 leading-relaxed">
+              One person from first message to finished job. {site.replyTime} — WhatsApp is usually fastest.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-volltar-black text-white rounded-xl p-6 spark-glow">
+          <p class="font-semibold text-volltar-orange">Prefer to message directly?</p>
+          <ul class="mt-4 space-y-3 text-white/80">
+            <li>
+              <span class="block text-xs uppercase tracking-wide text-white/50">Phone / Text</span>
+              <a href={site.phoneHref} class="font-semibold hover:text-volltar-orange">{site.phone}</a>
+            </li>
+            <li>
+              <span class="block text-xs uppercase tracking-wide text-white/50">WhatsApp</span>
+              <a href={site.whatsappHref} class="font-semibold hover:text-volltar-orange">Message on WhatsApp</a>
+            </li>
+            <li>
+              <span class="block text-xs uppercase tracking-wide text-white/50">Email</span>
+              <a href={`mailto:${site.email}`} class="font-semibold hover:text-volltar-orange">{site.email}</a>
+            </li>
+          </ul>
+        </div>
+
+        <AvailabilityNotice showEmergency />
+
+        <div class="bg-volltar-offwhite border border-black/10 rounded-xl p-6">
+          <p class="font-semibold">Example of a helpful message</p>
+          <blockquote class="mt-3 rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-black/75 leading-relaxed italic">
+            &ldquo;Hi — S41 postcode. Need two double sockets fitted behind the kitchen hob. Tiles are going up
+            soon. Happy to send photos. Weekends work best.&rdquo;
+          </blockquote>
+          <p class="text-xs text-black/50 mt-3">Photos of the area and your postcode make quoting much quicker.</p>
+        </div>
+
+        <div class="bg-volltar-offwhite border border-black/10 rounded-xl p-6">
+          <p class="font-semibold">Helpful to include</p>
+          <ul class="mt-3 space-y-2 text-sm text-black/70">
+            <li class="flex gap-2"><span class="text-volltar-orange">&#10003;</span>Your postcode</li>
+            <li class="flex gap-2"><span class="text-volltar-orange">&#10003;</span>Photos of the area or problem</li>
+            <li class="flex gap-2"><span class="text-volltar-orange">&#10003;</span>What you want fitted or fixed</li>
+            <li class="flex gap-2"><span class="text-volltar-orange">&#10003;</span>Whether you have bought fittings already</li>
+            <li class="flex gap-2"><span class="text-volltar-orange">&#10003;</span>Any access or timing constraints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <AreasStrip />
+
+  <FAQList
+    items={contactFAQ}
+    title="Before you get in touch"
+    description="Quick answers on quotes, response times and visits."
+  />
+</BaseLayout>

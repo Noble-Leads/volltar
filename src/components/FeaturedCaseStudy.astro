@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import type { PortfolioJob } from "../data/portfolio";
+import { getPortfolioImage } from "../lib/portfolioImages";
+
+interface Props {
+  lead: PortfolioJob;
+  secondary: PortfolioJob[];
+}
+
+const { lead, secondary } = Astro.props;
+const leadImg = getPortfolioImage(lead.image);
+const leadHref = `/portfolio/${lead.slug}`;
+---
+
+<section class="bg-volltar-offwhite border-y border-black/10">
+  <div class="mx-auto max-w-6xl px-4 py-16">
+    <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
+      <div>
+        <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Case study</p>
+        <h2 class="font-display text-2xl font-bold mt-1">Written up with photos from the job</h2>
+      </div>
+      <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline text-sm">See all &rarr;</a>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-6">
+      <a
+        href={leadHref}
+        data-reveal-item
+        data-hover-lift
+        class="group lg:col-span-7 flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm hover:border-volltar-orange/40 hover:shadow-lg transition-all"
+      >
+        {
+          leadImg && (
+            <div class="relative overflow-hidden aspect-[16/10] md:aspect-[16/9]">
+              <Image
+                src={leadImg}
+                alt={lead.title}
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                widths={[600, 900, 1200]}
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                loading="lazy"
+              />
+              <span class="absolute top-4 left-4 text-xs font-bold uppercase tracking-wide bg-volltar-orange text-volltar-black px-2.5 py-1 rounded-full">
+                {lead.serviceTag}
+              </span>
+            </div>
+          )
+        }
+        <div class="p-6 md:p-8 flex flex-col flex-1">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-black/50">
+            <span>{lead.location}</span>
+            {lead.completed && (
+              <>
+                <span aria-hidden="true">&middot;</span>
+                <span>{lead.completed}</span>
+              </>
+            )}
+          </div>
+          <h3 class="font-display text-xl md:text-2xl font-bold mt-2 group-hover:text-volltar-orange transition-colors leading-snug">
+            {lead.title}
+          </h3>
+          <p class="text-black/70 mt-3 flex-1 leading-relaxed">{lead.summary}</p>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-volltar-orange">
+            Read the full write-up
+            <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+          </span>
+        </div>
+      </a>
+
+      <div class="lg:col-span-5 flex flex-col gap-6" data-reveal-stagger>
+        {
+          secondary.map((job) => {
+            const img = getPortfolioImage(job.image);
+            const href = `/portfolio/${job.slug}`;
+            return (
+              <a
+                href={href}
+                data-reveal-item
+                data-hover-lift
+                class="group flex flex-1 overflow-hidden rounded-xl border border-black/10 bg-white hover:border-volltar-orange/40 hover:shadow-md transition-all"
+              >
+                {
+                  img && (
+                    <div class="relative w-32 sm:w-36 shrink-0 overflow-hidden">
+                      <Image
+                        src={img}
+                        alt={job.title}
+                        class="h-full w-full object-cover min-h-[7rem] transition-transform duration-500 group-hover:scale-105"
+                        widths={[144, 288]}
+                        sizes="144px"
+                        loading="lazy"
+                      />
+                    </div>
+                  )
+                }
+                <div class="p-4 flex flex-col justify-center min-w-0">
+                  <p class="text-[10px] font-bold uppercase tracking-wide text-volltar-orange truncate">
+                    {job.serviceTag}
+                  </p>
+                  <h3 class="font-semibold text-sm mt-1 group-hover:text-volltar-orange transition-colors line-clamp-2">
+                    {job.title}
+                  </h3>
+                  <p class="text-xs text-black/50 mt-1">
+                    {job.location}
+                    {job.completed ? ` · ${job.completed}` : ""}
+                  </p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+
+const highlights = [
+  { label: "Chesterfield", detail: "East Midlands" },
+  { label: "Direct contact", detail: "No middlemen" },
+  { label: "Weekends", detail: "If weekdays don't suit" },
+];
+---
+
+<div class="about-portrait relative isolate mx-auto w-full max-w-[21rem] lg:max-w-none" data-about-portrait>
+  <div class="about-portrait-blobs pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div class="about-portrait-blob about-portrait-blob-orange"></div>
+    <div class="about-portrait-blob about-portrait-blob-blue"></div>
+    <div class="about-portrait-blob about-portrait-blob-violet"></div>
+  </div>
+
+  {
+    highlights.map((item, index) => (
+      <div
+        class:list={[
+          "about-portrait-chip absolute z-30 hidden rounded-xl border border-black/10 bg-white/95 px-3 py-2 shadow-md backdrop-blur-sm sm:block",
+          index === 0 && "-left-2 top-[12%] lg:-left-6",
+          index === 1 && "-right-3 top-[42%] lg:-right-8",
+          index === 2 && "-left-1 bottom-[22%] lg:-left-4",
+        ]}
+      >
+        <p class="text-xs font-bold text-volltar-black">{item.label}</p>
+        <p class="text-[10px] text-black/55">{item.detail}</p>
+      </div>
+    ))
+  }
+
+  <figure class="about-portrait-figure relative z-10 flex justify-center">
+    <Image
+      src={src}
+      alt={alt}
+      class="about-portrait-img w-full max-w-[16rem] sm:max-w-[18rem] lg:max-w-[20rem] h-auto object-contain"
+      widths={[340, 682]}
+      loading="eager"
+    />
+    <figcaption
+      class="about-portrait-caption absolute -bottom-1 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-4 py-2 shadow-lg"
+    >
+      <span class="h-2 w-2 rounded-full bg-volltar-orange" aria-hidden="true"></span>
+      <span class="text-sm font-bold text-volltar-black">Hubert</span>
+      <span class="text-sm text-black/40" aria-hidden="true">·</span>
+      <span class="text-sm font-semibold text-black/60">Volltar</span>
+    </figcaption>
+  </figure>
+</div>
+
+<style>
+  .about-portrait-blobs {
+    inset: 4% 0 8%;
+  }
+
+  .about-portrait-blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .about-portrait-blob-orange {
+    top: 8%;
+    right: 6%;
+    width: 58%;
+    height: 42%;
+    background: var(--color-volltar-orange);
+    filter: blur(18px);
+    opacity: 0.95;
+  }
+
+  .about-portrait-blob-blue {
+    top: 28%;
+    left: 0;
+    width: 52%;
+    height: 38%;
+    background: var(--color-volltar-blue);
+    filter: blur(22px);
+    opacity: 0.9;
+  }
+
+  .about-portrait-blob-violet {
+    bottom: 10%;
+    left: 22%;
+    width: 62%;
+    height: 44%;
+    background: var(--color-volltar-violet);
+    filter: blur(20px);
+    opacity: 0.92;
+  }
+
+  .about-portrait-img {
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.12));
+  }
+
+  .about-portrait-chip {
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-portrait-blob,
+    .about-portrait-chip,
+    .about-portrait-figure {
+      transform: none !important;
+    }
+  }
+</style>

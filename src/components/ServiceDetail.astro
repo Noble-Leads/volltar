@@ -1,0 +1,64 @@
+---
+import type { Service } from "../data/services";
+import Icon from "./Icon.astro";
+
+interface Props {
+  service: Service;
+  expanded?: boolean;
+}
+
+const { service, expanded = false } = Astro.props;
+---
+
+<div
+  id={service.slug}
+  class:list={[
+    "scroll-mt-24 rounded-xl border p-6 md:p-8",
+    service.featured
+      ? "bg-volltar-black text-white border-volltar-orange"
+      : "bg-white text-volltar-black border-black/10",
+  ]}
+>
+  <div class="flex items-start gap-4">
+    <div
+      class:list={[
+        "shrink-0 inline-flex items-center justify-center h-12 w-12 rounded-lg",
+        service.featured ? "bg-volltar-orange text-volltar-black" : "bg-volltar-orange/10 text-volltar-orange",
+      ]}
+    >
+      <Icon name={service.icon} class="h-6 w-6" />
+    </div>
+    <div class="flex-1">
+      {
+        service.featured && (
+          <span class="block text-xs font-bold uppercase tracking-wide text-volltar-orange mb-1">Specialty</span>
+        )
+      }
+      <h2 class="text-xl md:text-2xl font-bold">{service.title}</h2>
+      <p class:list={["mt-2", service.featured ? "text-white/80" : "text-black/70"]}>{service.blurb}</p>
+    </div>
+  </div>
+
+  {
+    expanded && (
+      <div class="mt-6 pt-6 border-t border-current/10">
+        <p class:list={["text-sm font-semibold mb-3", service.featured ? "text-volltar-orange" : "text-volltar-black"]}>
+          Typical jobs include
+        </p>
+        <ul class="grid sm:grid-cols-2 gap-2">
+          {service.examples.map((example) => (
+            <li
+              class:list={[
+                "text-sm flex items-start gap-2",
+                service.featured ? "text-white/80" : "text-black/70",
+              ]}
+            >
+              <span class="text-volltar-orange mt-0.5 shrink-0">&#10003;</span>
+              {example}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</div>

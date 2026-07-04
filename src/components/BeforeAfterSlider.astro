@@ -1,0 +1,124 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  before: ImageMetadata;
+  after: ImageMetadata;
+  beforeAlt: string;
+  afterAlt: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  class?: string;
+}
+
+const {
+  before,
+  after,
+  beforeAlt,
+  afterAlt,
+  beforeLabel = "Before",
+  afterLabel = "After",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={["before-after relative z-0 select-none rounded-2xl border border-white/10 shadow-2xl overflow-hidden", className]}
+  data-before-after
+  style="--slider-pos: 50%"
+>
+  <div class="relative w-full aspect-[4/3] md:aspect-[3/2] min-h-[220px] bg-volltar-charcoal">
+    <Image
+      src={after}
+      alt={afterAlt}
+      width={900}
+      height={600}
+      widths={[450, 900]}
+      format="webp"
+      quality={82}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+    />
+
+    <Image
+      src={before}
+      alt={beforeAlt}
+      width={900}
+      height={600}
+      widths={[450, 900]}
+      format="webp"
+      quality={82}
+      class="before-after-before absolute inset-0 h-full w-full object-cover"
+      style="clip-path: inset(0 calc(100% - var(--slider-pos)) 0 0)"
+      loading="eager"
+      decoding="async"
+    />
+
+    <div
+      class="before-after-handle pointer-events-none absolute inset-y-0 z-20 w-0.5 -translate-x-1/2 bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)]"
+      style="left: var(--slider-pos)"
+      aria-hidden="true"
+    >
+      <div
+        class="before-after-knob absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-volltar-orange text-volltar-black shadow-lg"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 8l-4 4 4 4M14 8l4 4-4 4"></path>
+        </svg>
+      </div>
+    </div>
+
+    <span class="pointer-events-none absolute top-3 left-3 z-30 rounded-full bg-black/60 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+      {beforeLabel}
+    </span>
+    <span class="pointer-events-none absolute top-3 right-3 z-30 rounded-full bg-volltar-orange px-3 py-1 text-xs font-bold uppercase tracking-wide text-volltar-black">
+      {afterLabel}
+    </span>
+
+    <input
+      type="range"
+      min="5"
+      max="95"
+      value="50"
+      class="before-after-range absolute inset-0 z-40 h-full w-full cursor-ew-resize opacity-0"
+      aria-label="Drag to compare before and after photos"
+    />
+  </div>
+</div>
+
+<script>
+  function initBeforeAfter(root: HTMLElement) {
+    if (root.dataset.ready === "true") return;
+
+    const handle = root.querySelector<HTMLElement>(".before-after-handle");
+    const input = root.querySelector<HTMLInputElement>(".before-after-range");
+
+    if (!handle || !input) return;
+
+    const setPosition = (value: number) => {
+      const pct = Math.min(95, Math.max(5, value));
+      root.style.setProperty("--slider-pos", `${pct}%`);
+      input.value = String(Math.round(pct));
+    };
+
+    input.addEventListener("input", () => setPosition(Number(input.value)));
+    setPosition(Number(input.value));
+    root.dataset.ready = "true";
+  }
+
+  function initAll() {
+    document.querySelectorAll<HTMLElement>("[data-before-after]").forEach(initBeforeAfter);
+  }
+
+  initAll();
+  document.addEventListener("astro:page-load", initAll);
+</script>
+
+<style>
+  .before-after:focus-within .before-after-handle > div {
+    outline: 2px solid var(--color-volltar-orange);
+    outline-offset: 2px;
+  }
+</style>

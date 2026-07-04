@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CTABanner from "../../components/CTABanner.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = (await getCollection("blog"))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const related = allPosts
+  .filter((p) => p.data.tags.some((tag) => post.data.tags.includes(tag)))
+  .slice(0, 2);
+
+const morePosts = related.length > 0 ? related : allPosts.slice(0, 2);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <header class="bg-volltar-black text-white spark-glow">
+    <div class="mx-auto max-w-3xl px-4 py-14 md:py-16">
+      <a href="/blog" class="text-sm text-white/60 hover:text-volltar-orange transition-colors">
+        &larr; Back to blog
+      </a>
+      <p class="text-xs text-white/50 mt-6">
+        {post.data.pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+      </p>
+      {
+        post.data.tags.length > 0 && (
+          <div class="mt-3 flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="text-xs font-medium uppercase tracking-wide bg-white/10 text-white/80 px-2.5 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+      <h1 class="text-3xl md:text-4xl font-extrabold mt-4 leading-tight">{post.data.title}</h1>
+      <p class="text-white/70 mt-4 text-lg">{post.data.description}</p>
+    </div>
+  </header>
+
+  <article class="mx-auto max-w-3xl px-4 py-12 md:py-16 prose prose-neutral prose-headings:font-bold prose-a:text-volltar-orange">
+    <Content />
+  </article>
+
+  {
+    morePosts.length > 0 && (
+      <section class="bg-volltar-offwhite border-t border-black/10">
+        <div class="mx-auto max-w-4xl px-4 py-16">
+          <h2 class="text-xl font-bold mb-6">Keep reading</h2>
+          <div class="space-y-6">
+            {morePosts.map((relatedPost) => (
+              <BlogCard
+                title={relatedPost.data.title}
+                description={relatedPost.data.description}
+                pubDate={relatedPost.data.pubDate}
+                href={`/blog/${relatedPost.id}`}
+                tags={relatedPost.data.tags}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <CTABanner
+    title="Want help with this at home?"
+    description="Send a message with a short description and photos if you can."
+    buttonText="Get a Quote"
+  />
+</BaseLayout>

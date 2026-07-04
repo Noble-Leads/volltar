@@ -1,0 +1,41 @@
+---
+import AvailabilityNotice from "./AvailabilityNotice.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  showAvailability?: boolean;
+}
+
+const {
+  title = "Ready to get started?",
+  description = "Send a message or drop a WhatsApp and I will get back to you as soon as I can.",
+  buttonText = "Get a Quote",
+  buttonHref = "/contact",
+  showAvailability = true,
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-6xl px-4 py-16">
+  <div class="bg-volltar-black text-white rounded-2xl p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center spark-glow" data-reveal>
+    <div>
+      <h2 class="text-2xl font-bold">{title}</h2>
+      <p class="text-white/70 mt-2">{description}</p>
+      {showAvailability && (
+        <div class="mt-4">
+          <AvailabilityNotice variant="dark" />
+        </div>
+      )}
+    </div>
+    <div class="flex md:justify-end">
+      <a
+        href={buttonHref}
+        class="bg-volltar-orange text-volltar-black font-semibold px-6 py-3 rounded-md hover:bg-volltar-orange-light transition-colors"
+      >
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</section>

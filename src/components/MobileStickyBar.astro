@@ -1,0 +1,29 @@
+---
+import { site } from "../data/site";
+---
+
+<div
+  data-mobile-bar
+  class="fixed bottom-0 inset-x-0 z-40 md:hidden border-t border-black/10 bg-white/95 backdrop-blur-md shadow-[0_-4px_24px_rgba(0,0,0,0.08)] px-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+>
+  <div class="mx-auto flex max-w-lg gap-2">
+    <a
+      href={site.phoneHref}
+      class="flex flex-1 items-center justify-center rounded-lg border border-black/10 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:border-volltar-orange"
+    >
+      Call
+    </a>
+    <a
+      href={site.whatsappHref}
+      class="flex flex-1 items-center justify-center rounded-lg border border-black/10 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:border-volltar-orange"
+    >
+      WhatsApp
+    </a>
+    <a
+      href="/contact"
+      class="flex flex-[1.2] items-center justify-center rounded-lg bg-volltar-orange py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:bg-volltar-orange-light"
+    >
+      Get a quote
+    </a>
+  </div>
+</div>

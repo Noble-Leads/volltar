@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import AboutPortrait from "../components/AboutPortrait.astro";
+import DetailSpotlight from "../components/DetailSpotlight.astro";
+import CTABanner from "../components/CTABanner.astro";
+import portrait from "../assets/hubert-portrait.png";
+import { site, values } from "../data/site";
+---
+
+<BaseLayout
+  title="About Hubert & Volltar"
+  description="Meet Hubert, the handyman behind Volltar. Careful, tidy home improvement work across Chesterfield, Leicester, Wellingborough and the East Midlands."
+>
+  <PageHero
+    eyebrow="About"
+    title="The person who turns up is the person you spoke to"
+    description="I'm Hubert. I run Volltar myself — one contact, one standard of work, no middlemen."
+  />
+
+  <section class="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-white to-volltar-offwhite">
+    <div class="mx-auto max-w-6xl px-4 py-16 lg:py-20">
+      <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+        <div class="lg:col-span-5 lg:pr-4">
+          <AboutPortrait src={portrait} alt="Hubert, handyman at Volltar" />
+        </div>
+
+        <div class="lg:col-span-7" data-reveal>
+          <p class="text-volltar-orange font-semibold text-sm uppercase tracking-wide">About Volltar</p>
+          <h2 class="text-2xl md:text-3xl font-bold mt-2 leading-tight">
+            Careful home improvement work, done properly.
+          </h2>
+
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {
+              site.areas.map((area) => (
+                <li class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70">
+                  {area}
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="mt-8 space-y-4 text-black/70 leading-relaxed">
+            <p>
+              I've been doing handyman and home improvement work for years — sockets and lighting, loft hatches,
+              kitchen fittings, outdoor power and CCTV. These days I focus most on lighting, smart home features and
+              security, but I still take on the general jobs that need a careful pair of hands.
+            </p>
+            <p>
+              I leave homes the way I found them, minus the problem. Dust sheets down, mess cleaned up, and a finish
+              that looks right — not just functional. I am fluent in Polish and English if that makes explaining the
+              job easier.
+            </p>
+            <p>
+              If something needs a specialist or is outside what I can take on, I will say so upfront rather than
+              hoping for the best.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-2 rounded-md bg-volltar-orange px-5 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:bg-volltar-orange-light"
+            >
+              Get in touch
+            </a>
+            <a
+              href={site.whatsappHref}
+              class="inline-flex items-center gap-2 rounded-md border border-black/15 bg-white px-5 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:border-volltar-orange hover:text-volltar-orange"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-volltar-offwhite border-b border-black/10">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-2xl font-bold">How I work</h2>
+        <p class="text-black/60 mt-2">What you can expect on every job.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-10" data-reveal-stagger>
+        {
+          values.map((value, index) => (
+            <div
+              data-reveal-item
+              data-hover-lift
+              class="group relative overflow-hidden rounded-xl border border-black/10 bg-white p-6 transition-shadow duration-200 hover:border-volltar-orange/40 hover:shadow-lg"
+            >
+              <div
+                class="absolute inset-x-0 top-0 h-1 spark-bar opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                aria-hidden="true"
+              ></div>
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-volltar-offwhite text-xs font-extrabold text-volltar-orange">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 class="font-bold text-lg mt-4">{value.title}</h3>
+              <p class="text-sm text-black/70 mt-2 leading-relaxed">{value.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <DetailSpotlight reverse class="border-b border-black/10" />
+
+  <CTABanner
+    title="Want to talk through a job?"
+    description="Send a message with a short description and photos if you have them."
+    buttonText="Get in Touch"
+  />
+</BaseLayout>

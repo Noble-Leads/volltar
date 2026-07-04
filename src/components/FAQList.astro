@@ -1,0 +1,43 @@
+---
+import type { FAQItem } from "../data/faq";
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+  description?: string;
+}
+
+const {
+  items,
+  title = "Common questions",
+  description = "Straight answers before you get in touch.",
+} = Astro.props;
+---
+
+<section class="bg-volltar-offwhite border-y border-black/10">
+  <div class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="text-2xl font-bold" data-reveal>{title}</h2>
+    <p class="text-black/60 mt-2" data-reveal>{description}</p>
+    <div class="mt-8 space-y-3" data-reveal-stagger>
+      {
+        items.map((item) => (
+          <details data-faq-item data-reveal-item class="group bg-white border border-black/10 rounded-xl px-5 py-4 open:border-volltar-orange/40">
+            <summary class="cursor-pointer font-semibold list-none flex items-center justify-between gap-4">
+              {item.question}
+              <span class="faq-icon text-volltar-orange text-xl leading-none shrink-0">+</span>
+            </summary>
+            <div class="faq-answer overflow-hidden">
+              <p class="text-black/70 text-sm pt-3 leading-relaxed">{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

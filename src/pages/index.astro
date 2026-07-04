@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import FAQList from "../components/FAQList.astro";
+import CTABanner from "../components/CTABanner.astro";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import FeaturedCaseStudy from "../components/FeaturedCaseStudy.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import { services, featuredService, standardServices } from "../data/services";
+import { portfolioJobs } from "../data/portfolio";
+import { testimonials } from "../data/testimonials";
+import { site } from "../data/site";
+import { generalFAQ } from "../data/faq";
+import shearwaterBefore from "../assets/hero/shearwater-before.jpg";
+import shearwaterAfter from "../assets/hero/shearwater-after.jpg";
+
+const [leadJob, ...otherJobs] = portfolioJobs;
+const secondaryJobs = otherJobs.slice(0, 2);
+const highlightTestimonials = testimonials.slice(0, 3);
+const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Polish?").slice(0, 4);
+---
+
+<BaseLayout
+  title="Handyman & Home Improvements"
+  description={`Volltar is a handyman and home improvement service covering ${site.areas.join(", ")}. Sockets, lighting, loft work, smart home and CCTV, all finished cleanly and tidily.`}
+>
+  <section class="bg-volltar-black text-white spark-glow" data-hero>
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="text-volltar-orange font-semibold mb-3" data-hero-item>Handyman & Home Improvements</p>
+        <h1 class="font-display text-4xl md:text-5xl font-extrabold leading-tight" data-hero-item>
+          Careful, tidy work you can trust in your home.
+        </h1>
+        <p class="mt-5 text-white/70 text-lg" data-hero-item>
+          From sockets and lighting to smart home features and CCTV, Volltar gets the job done properly and
+          leaves your home the way it was found, minus the problem.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4" data-hero-item>
+          <a
+            href="/contact"
+            class="bg-volltar-orange text-volltar-black font-semibold px-6 py-3 rounded-md hover:bg-volltar-orange-light transition-colors"
+          >
+            Get a Quote
+          </a>
+          <a
+            href="/portfolio"
+            class="border border-white/30 px-6 py-3 rounded-md hover:border-volltar-orange hover:text-volltar-orange transition-colors"
+          >
+            See Case Studies
+          </a>
+        </div>
+        <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70" data-hero-item>
+          <li class="flex items-center gap-2">
+            <span class="text-volltar-orange">&#10003;</span> Clean, tidy work
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-volltar-orange">&#10003;</span> Straightforward pricing
+          </li>
+        </ul>
+      </div>
+      <div class="relative" data-hero-media>
+        <div class="absolute -inset-3 spark-bar rounded-3xl blur-2xl opacity-30" aria-hidden="true"></div>
+        <BeforeAfterSlider
+          before={shearwaterBefore}
+          after={shearwaterAfter}
+          beforeAlt="Kitchen at 18 Shearwater Lane before the backsplash and socket upgrade"
+          afterAlt="Same kitchen after new grey tile backsplash and sockets fitted"
+          beforeLabel="Before"
+          afterLabel="After"
+          class="relative"
+        />
+        <div class="absolute -bottom-4 -left-4 hidden sm:block bg-volltar-orange text-volltar-black rounded-xl px-5 py-4 shadow-lg max-w-[13rem] z-50">
+          <p class="text-lg font-extrabold leading-tight">Weekend work</p>
+          <p class="text-xs font-semibold mt-1">Available if weekdays don't suit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-volltar-offwhite border-b border-black/10">
+    <div class="mx-auto max-w-6xl px-4 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-black/70">
+      <span class="font-semibold text-volltar-black">Covering the East Midlands</span>
+      {site.areas.map((area) => <span class="flex items-center gap-2"><span class="text-volltar-orange">&#9679;</span>{area}</span>)}
+      <span class="flex items-center gap-2"><span class="text-volltar-orange">&#9679;</span>& surrounding areas</span>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="flex items-end justify-between mb-8 flex-wrap gap-4" data-reveal>
+      <div>
+        <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Services</p>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mt-1">What I can help with</h2>
+        <p class="text-black/60 mt-2">General home improvements, with a specialty in smart features and CCTV.</p>
+      </div>
+      <a href="/services" class="text-volltar-orange font-semibold hover:underline text-sm shrink-0">View all services &rarr;</a>
+    </div>
+
+    <ServiceCard service={featuredService} variant="featured" />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5" data-reveal-stagger>
+      {standardServices.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+
+  <FeaturedCaseStudy lead={leadJob} secondary={secondaryJobs} />
+
+  <ProcessSteps />
+
+  <TestimonialsSection testimonials={highlightTestimonials} />
+
+  <FAQList items={homeFAQ} />
+
+  <CTABanner showAvailability={false} />
+</BaseLayout>

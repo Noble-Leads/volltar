@@ -1,0 +1,263 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-volltar-black: #0a0a0a;
+  --color-volltar-charcoal: #1c1c1c;
+  --color-volltar-orange: #e6a81e;
+  --color-volltar-orange-light: #f5c563;
+  --color-volltar-offwhite: #f7f5f2;
+  /* Electric "spark" accents, pulled from the brand's blue/magenta gel lighting. */
+  --color-volltar-blue: #2f6bff;
+  --color-volltar-violet: #8b3dff;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Thin gradient rule echoing the logo bolt: blue -> orange -> violet. */
+.spark-bar {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-volltar-blue),
+    var(--color-volltar-orange) 50%,
+    var(--color-volltar-violet)
+  );
+}
+
+/* Ambient dual-gel glow (blue one corner, violet the other) for dark sections. */
+.spark-glow {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.spark-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      45% 70% at 8% 15%,
+      color-mix(in srgb, var(--color-volltar-blue) 60%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      50% 75% at 95% 95%,
+      color-mix(in srgb, var(--color-volltar-violet) 50%, transparent),
+      transparent 72%
+    );
+  opacity: 0.55;
+}
+
+/* Gradient text for select headings/accents. */
+.spark-text {
+  background-image: linear-gradient(90deg, var(--color-volltar-orange), var(--color-volltar-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.process-step-card {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.process-step-card--active {
+  border-color: rgb(230 168 30 / 0.4);
+  box-shadow: 0 14px 32px -10px rgb(230 168 30 / 0.28);
+}
+
+.process-step-card--active .process-step-badge {
+  box-shadow:
+    0 0 0 4px rgb(230 168 30 / 0.22),
+    0 4px 12px rgb(230 168 30 / 0.25);
+}
+
+[data-process-line-fill],
+[data-process-line-fill-mobile] {
+  will-change: transform;
+}
+
+/* CSS motion fallbacks — run until GSAP adds .motion-js to <html> */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes motion-rise {
+    from {
+      opacity: 0;
+      transform: translateY(48px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes motion-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(40px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes motion-chip-float-a {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes motion-chip-float-b {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(14px);
+    }
+  }
+
+  @keyframes motion-chip-float-c {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes motion-blob-drift-a {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(14px, 8px) scale(1.08);
+    }
+  }
+
+  @keyframes motion-blob-drift-b {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-12px, -6px) scale(1.1);
+    }
+  }
+
+  @keyframes motion-blob-drift-c {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(10px, -10px) scale(1.06);
+    }
+  }
+
+  @keyframes motion-knob-pulse {
+    0%,
+    100% {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 0 0 0 rgb(230 168 30 / 0.4);
+    }
+    50% {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 0 0 10px rgb(230 168 30 / 0);
+    }
+  }
+
+  html:not(.motion-js) [data-hero-item] {
+    animation: motion-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  html:not(.motion-js) [data-hero] [data-hero-item]:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  html:not(.motion-js) [data-hero] [data-hero-item]:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+  html:not(.motion-js) [data-hero] [data-hero-item]:nth-child(3) {
+    animation-delay: 0.31s;
+  }
+  html:not(.motion-js) [data-hero] [data-hero-item]:nth-child(4) {
+    animation-delay: 0.44s;
+  }
+  html:not(.motion-js) [data-hero] [data-hero-item]:nth-child(5) {
+    animation-delay: 0.57s;
+  }
+
+  html:not(.motion-js) [data-hero-media],
+  html:not(.motion-js) [data-before-after] {
+    animation: motion-slide-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+  }
+
+  html:not(.motion-js) .about-portrait-chip:nth-of-type(1) {
+    animation: motion-chip-float-a 3s ease-in-out infinite;
+  }
+  html:not(.motion-js) .about-portrait-chip:nth-of-type(2) {
+    animation: motion-chip-float-b 3.4s ease-in-out 0.3s infinite;
+  }
+  html:not(.motion-js) .about-portrait-chip:nth-of-type(3) {
+    animation: motion-chip-float-c 3.1s ease-in-out 0.6s infinite;
+  }
+
+  html:not(.motion-js) .about-portrait-blob-orange {
+    animation: motion-blob-drift-a 5s ease-in-out infinite;
+  }
+  html:not(.motion-js) .about-portrait-blob-blue {
+    animation: motion-blob-drift-b 4.6s ease-in-out 0.4s infinite;
+  }
+  html:not(.motion-js) .about-portrait-blob-violet {
+    animation: motion-blob-drift-c 5.8s ease-in-out 0.8s infinite;
+  }
+
+  html:not(.motion-js) .before-after-knob {
+    animation: motion-knob-pulse 1.4s ease-in-out infinite;
+  }
+
+  html:not(.motion-js) .process-step-card {
+    opacity: 1;
+  }
+
+  html:not(.motion-js) [data-process-line-fill],
+  html:not(.motion-js) [data-process-line-fill-mobile] {
+    transform: none;
+  }
+
+  html:not(.motion-js) [data-process-step] {
+    animation: motion-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  html:not(.motion-js) [data-process-step]:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  html:not(.motion-js) [data-process-step]:nth-child(2) {
+    animation-delay: 0.17s;
+  }
+  html:not(.motion-js) [data-process-step]:nth-child(3) {
+    animation-delay: 0.29s;
+  }
+  html:not(.motion-js) [data-process-step]:nth-child(4) {
+    animation-delay: 0.41s;
+  }
+}

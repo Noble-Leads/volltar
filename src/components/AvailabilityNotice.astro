@@ -1,0 +1,38 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  /** Use "dark" on black/spark-glow backgrounds so text stays readable. */
+  variant?: "light" | "dark";
+  showEmergency?: boolean;
+}
+
+const { variant = "light", showEmergency = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative z-10 rounded-lg px-4 py-3 text-sm leading-relaxed",
+    variant === "dark"
+      ? "bg-black/75 border border-white/25 text-white backdrop-blur-sm shadow-lg"
+      : "bg-volltar-offwhite border border-black/10 text-black/80",
+  ]}
+>
+  <p>
+    <span class:list={["font-semibold", variant === "dark" ? "text-volltar-orange" : "text-volltar-black"]}>
+      Weekends:
+    </span>
+    {" "}{site.weekendWork}
+  </p>
+  <p class:list={["mt-2", variant === "dark" ? "text-white/85" : "text-black/60"]}>{site.replyTime}</p>
+  {
+    showEmergency && (
+      <p class="mt-3 pt-3 border-t border-current/10">
+        <span class:list={["font-semibold", variant === "dark" ? "text-volltar-orange" : "text-volltar-black"]}>
+          {site.emergencyCallout.summary}
+        </span>
+        {" — "}{site.emergencyCallout.minimum}. {site.emergencyCallout.detail}
+      </p>
+    )
+  }
+</div>

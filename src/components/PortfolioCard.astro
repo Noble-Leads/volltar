@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import type { PortfolioJob } from "../data/portfolio";
+import { getPortfolioImage } from "../lib/portfolioImages";
+
+interface Props {
+  job: PortfolioJob;
+}
+
+const { job } = Astro.props;
+const imgSrc = getPortfolioImage(job.image);
+const href = `/portfolio/${job.slug}`;
+---
+
+<a
+  href={href}
+  data-reveal-item
+  data-hover-lift
+  class="group flex flex-col rounded-xl overflow-hidden border border-black/10 bg-white hover:shadow-lg hover:border-volltar-orange/50 transition-shadow"
+>
+  <div class="relative overflow-hidden">
+    {
+      imgSrc && (
+        <Image
+          src={imgSrc}
+          alt={job.title}
+          class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+          widths={[400, 800]}
+          sizes="(max-width: 768px) 100vw, 400px"
+        />
+      )
+    }
+    <span class="absolute top-3 left-3 text-xs font-bold uppercase tracking-wide bg-volltar-orange text-volltar-black px-2.5 py-1 rounded-full">
+      {job.serviceTag}
+    </span>
+  </div>
+  <div class="p-5 flex flex-col flex-1">
+    <h3 class="font-display text-lg font-bold group-hover:text-volltar-orange transition-colors">{job.title}</h3>
+    <p class="text-sm text-black/50 mb-2">
+      {job.location}
+      {job.completed && <span> &middot; {job.completed}</span>}
+    </p>
+    <p class="text-sm text-black/70 flex-1">{job.summary}</p>
+    <span class="mt-4 text-sm font-semibold text-volltar-orange inline-flex items-center gap-1">
+      Read case study
+      <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+    </span>
+  </div>
+</a>

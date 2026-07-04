@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  href: string;
+  tags?: string[];
+  featured?: boolean;
+}
+
+const { title, description, pubDate, href, tags = [], featured = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "group block rounded-xl border bg-white overflow-hidden hover:border-volltar-orange/50 hover:shadow-lg transition-all",
+    featured ? "md:grid md:grid-cols-5 border-volltar-orange/30" : "border-black/10",
+  ]}
+>
+  {
+    featured && (
+      <div class="md:col-span-2 bg-volltar-black text-white spark-glow p-8 flex flex-col justify-end min-h-[12rem]">
+        <p class="text-xs font-bold uppercase tracking-wide text-volltar-orange">Latest post</p>
+        <p class="text-xs text-white/50 mt-4">
+          {pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+        </p>
+      </div>
+    )
+  }
+  <div class:list={["p-6", featured && "md:col-span-3 md:p-8"]}>
+    {
+      !featured && (
+        <p class="text-xs text-black/50">
+          {pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+        </p>
+      )
+    }
+    <h2
+      class:list={[
+        "font-bold group-hover:text-volltar-orange transition-colors",
+        featured ? "text-2xl mt-2" : "text-xl mt-1",
+      ]}
+    >
+      {title}
+    </h2>
+    <p class="text-black/70 mt-2">{description}</p>
+    {
+      tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="text-xs font-medium uppercase tracking-wide bg-volltar-offwhite text-black/60 px-2.5 py-1 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-volltar-orange">
+      Read article
+      <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+    </span>
+  </div>
+</a>
