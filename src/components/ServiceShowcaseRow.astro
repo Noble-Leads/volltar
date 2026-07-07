@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import type { Service } from "../data/services";
+import { getPortfolioJob } from "../data/portfolio";
+import { getPortfolioImage } from "../lib/portfolioImages";
+import { getServiceCardImage } from "../lib/serviceImages";
+import Icon from "./Icon.astro";
+import BeforeAfterSlider from "./BeforeAfterSlider.astro";
+
+interface Props {
+  service: Service;
+  reverse?: boolean;
+}
+
+const { service, reverse = false } = Astro.props;
+const job = service.portfolioSlug ? getPortfolioJob(service.portfolioSlug) : undefined;
+const beforeAfter = service.beforeAfter;
+const beforeImg = beforeAfter ? getServiceCardImage(beforeAfter.before) : undefined;
+const afterImg = beforeAfter ? getServiceCardImage(beforeAfter.after) : undefined;
+const img =
+  (service.cardImage ? getServiceCardImage(service.cardImage) : undefined) ??
+  (job ? getPortfolioImage(job.image) : undefined);
+const jobHref = job ? `/portfolio/${job.slug}` : undefined;
+const imgPosition = service.cardImagePosition ?? "center";
+---
+
+<article
+  id={service.slug}
+  data-reveal
+  class:list={[
+    "scroll-mt-24 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm",
+    reverse && "md:flex-row-reverse",
+  ]}
+>
+  <div class="grid md:grid-cols-2">
+    <div class:list={["relative min-h-[14rem] md:min-h-full bg-volltar-charcoal", reverse && "md:order-2"]}>
+      {
+        beforeImg && afterImg && beforeAfter ? (
+          <BeforeAfterSlider
+            before={beforeImg}
+            after={afterImg}
+            beforeAlt={beforeAfter.beforeAlt}
+            afterAlt={beforeAfter.afterAlt}
+            class="h-full min-h-[14rem] rounded-none border-0 shadow-none [&>div]:min-h-[14rem] md:[&>div]:min-h-full [&>div]:aspect-auto md:[&>div]:h-full"
+          />
+        ) : (
+          img && (
+            <Image
+              src={img}
+              alt={job?.title ?? service.title}
+              class="absolute inset-0 h-full w-full object-cover"
+              style={`object-position: ${imgPosition}`}
+              widths={[480, 720, 960]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
+            />
+          )
+        )
+      }
+      {job && (
+        <span class="absolute top-4 left-4 z-10 text-xs font-bold uppercase tracking-wide bg-volltar-orange text-volltar-black px-2.5 py-1 rounded-full">
+          {job.serviceTag}
+        </span>
+      )}
+    </div>
+
+    <div class:list={["flex flex-col justify-center p-6 md:p-8 lg:p-10", reverse && "md:order-1"]}>
+      <div class="inline-flex items-center justify-center h-11 w-11 rounded-lg bg-volltar-orange/10 text-volltar-orange mb-4">
+        <Icon name={service.icon} class="h-5 w-5" />
+      </div>
+      <h3 class="font-display text-xl md:text-2xl font-bold">{service.title}</h3>
+      <p class="mt-2 text-black/70 leading-relaxed">{service.blurb}</p>
+
+      <ul class="mt-5 grid sm:grid-cols-2 gap-x-4 gap-y-2">
+        {
+          service.examples.slice(0, 6).map((example) => (
+            <li class="text-sm flex items-start gap-2 text-black/70">
+              <span class="text-volltar-orange mt-0.5 shrink-0">&#10003;</span>
+              {example}
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        jobHref && (
+          <a
+            href={jobHref}
+            class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-volltar-orange hover:underline w-fit"
+          >
+            See a real {job?.location} job
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

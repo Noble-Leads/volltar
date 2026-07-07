@@ -119,6 +119,7 @@ export const services: Service[] = [
       "Extractor fans, under cabinet lighting and fittings around kitchens and bathrooms, fitted cleanly and finished properly.",
     icon: "fire",
     portfolioSlug: "shearwater-kitchen-upgrade",
+    cardImage: "kitchen-bathroom.jpg",
     examples: [
       "Chimney extractor hoods and splashbacks",
       "Kitchen extractor wiring chased into walls",

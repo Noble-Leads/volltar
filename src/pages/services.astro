@@ -1,18 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import ServiceDetail from "../components/ServiceDetail.astro";
 import FAQList from "../components/FAQList.astro";
 import CTABanner from "../components/CTABanner.astro";
 import PortfolioCard from "../components/PortfolioCard.astro";
 import ServicesAskCallout from "../components/ServicesAskCallout.astro";
-import { services, featuredService, standardServices } from "../data/services";
-import { focusAreas, generalHandymanJobs } from "../data/handymanRange";
+import ServicesSpecialtyBlock from "../components/ServicesSpecialtyBlock.astro";
+import ServiceShowcaseRow from "../components/ServiceShowcaseRow.astro";
+import { Image } from "astro:assets";
+import { featuredService, standardServices } from "../data/services";
+import { generalHandymanJobs } from "../data/handymanRange";
+import { getServiceCardImage } from "../lib/serviceImages";
 import { servicesFAQ } from "../data/faq";
 import { portfolioJobs } from "../data/portfolio";
 import { site } from "../data/site";
 
 const relatedJobs = portfolioJobs.slice(0, 2);
+const previewPhotos = ["sockets-switches.jpg", "outdoor-lighting.jpg", "general-repairs.jpg"]
+  .map((name) => getServiceCardImage(name))
+  .filter(Boolean);
+
+const sectionLinks = [
+  { href: "#focus", label: "Focus areas" },
+  { href: "#services", label: "All services" },
+  { href: "#portfolio", label: "Portfolio" },
+  { href: "#faq", label: "FAQ" },
+];
 ---
 
 <BaseLayout
@@ -22,70 +35,134 @@ const relatedJobs = portfolioJobs.slice(0, 2);
   <PageHero
     eyebrow="Services"
     title="Handyman work, done properly"
-    description="A wide mix of general jobs around the home — tiling, furniture builds, fittings and repairs — with extra focus on CCTV, lighting, HiFi, networks and home tech."
-  />
+    description="General jobs around the home — tiling, IKEA builds, fittings and repairs — plus a real focus on CCTV, lighting, HiFi, networks and home tech."
+  >
+    <nav class="mt-8 flex flex-wrap gap-2" aria-label="On this page">
+      {
+        sectionLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:border-volltar-orange hover:text-volltar-orange"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href={site.phoneHref}
+        class="inline-flex items-center rounded-lg bg-volltar-orange px-5 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:bg-volltar-orange-light"
+      >
+        Call to check a job
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex items-center rounded-lg border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-volltar-orange hover:text-volltar-orange"
+      >
+        Get a quote
+      </a>
+    </div>
+  </PageHero>
 
-  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
-    <div class="max-w-3xl" data-reveal>
-      <p class="text-lg text-black/75 leading-relaxed">
-        I take on most sensible handyman and home improvement work. Some jobs are bread-and-butter — a shelf, a
-        socket, flat-pack furniture from IKEA — others need more planning, like CCTV, lighting layouts or getting
-        your WiFi and home cloud sorted properly.
-      </p>
-      <p class="text-black/60 mt-4 leading-relaxed">
-        The sections below are a guide. If yours is not listed, it is still worth a call or a WhatsApp. I will tell
-        you honestly if it is something I can do.
-      </p>
+  <section class="border-b border-black/10 bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6" data-reveal>
+          <p class="text-lg text-black/80 leading-relaxed">
+            I take on most sensible handyman work. Some jobs are straightforward — a shelf, extra sockets, flat-pack
+            furniture — others need more planning, like CCTV runs, lighting layouts or sorting your WiFi and home
+            cloud properly.
+          </p>
+          <p class="text-black/55 mt-4 leading-relaxed">
+            Everything below is a guide, not a hard list. If you are not sure whether I do it, ring or WhatsApp and
+            ask.
+          </p>
+        </div>
+
+        <div class="lg:col-span-6 grid grid-cols-3 gap-3" data-reveal-stagger>
+          {
+            previewPhotos.map((photo, i) => (
+              <div
+                data-reveal-item
+                class:list={[
+                  "overflow-hidden rounded-xl border border-black/10 shadow-sm",
+                  i === 1 && "mt-6",
+                  i === 2 && "mt-3",
+                ]}
+              >
+                <Image
+                  src={photo!}
+                  alt=""
+                  aria-hidden="true"
+                  class="aspect-[3/4] w-full object-cover"
+                  widths={[200, 400]}
+                  width={200}
+                  height={267}
+                  loading="lazy"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 gap-4" data-reveal>
+        <a
+          href="#focus"
+          class="group rounded-xl border border-volltar-orange/30 bg-volltar-black p-6 text-white transition-shadow hover:shadow-lg"
+        >
+          <p class="text-volltar-orange text-xs font-bold uppercase tracking-wide">Specialty</p>
+          <p class="font-display font-bold text-lg mt-2 group-hover:text-volltar-orange transition-colors">
+            CCTV, lighting &amp; home tech
+          </p>
+          <p class="text-sm text-white/60 mt-2">Where tidy cabling and the right kit matter most.</p>
+        </a>
+        <a
+          href="#services"
+          class="group rounded-xl border border-black/10 bg-volltar-offwhite p-6 transition-shadow hover:shadow-md hover:border-volltar-orange/30"
+        >
+          <p class="text-volltar-orange text-xs font-bold uppercase tracking-wide">General</p>
+          <p class="font-display font-bold text-lg mt-2 group-hover:text-volltar-orange transition-colors">
+            Everyday handyman jobs
+          </p>
+          <p class="text-sm text-black/60 mt-2">Tiling, furniture builds, loft work, fittings and repairs.</p>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 pb-16">
-    <div class="max-w-2xl mb-8" data-reveal>
-      <h2 class="font-display text-2xl font-bold">Where I focus most</h2>
+  <ServicesSpecialtyBlock service={featuredService} />
+
+  <section id="services" class="scroll-mt-20 mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="max-w-2xl mb-10" data-reveal>
+      <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">All services</p>
+      <h2 class="font-display text-2xl md:text-3xl font-bold mt-1">General handyman &amp; home improvement</h2>
       <p class="text-black/60 mt-2">
-        CCTV, lighting and home tech — the jobs where tidy cabling, the right kit and a proper finish really matter.
+        Photos from real jobs. Finished tidily — dust sheets down, mess cleared before I leave.
       </p>
     </div>
 
-    <ul class="flex flex-wrap gap-2 mb-8" data-reveal>
-      {
-        focusAreas.map((item) => (
-          <li class="rounded-full border border-volltar-orange/25 bg-volltar-orange/10 px-4 py-1.5 text-sm font-medium text-volltar-black">
-            {item}
-          </li>
-        ))
-      }
-    </ul>
-
-    <ServiceDetail service={featuredService} expanded />
+    <div class="space-y-8">
+      {standardServices.map((service, index) => <ServiceShowcaseRow service={service} reverse={index % 2 === 1} />)}
+    </div>
   </section>
 
   <section class="bg-volltar-offwhite border-y border-black/10">
-    <div class="mx-auto max-w-6xl px-4 py-16">
-      <div class="max-w-2xl mb-8" data-reveal>
-        <h2 class="font-display text-2xl font-bold">General handyman jobs</h2>
-        <p class="text-black/60 mt-2">
-          Everyday work around the house — finished tidily, with dust sheets down and the mess cleared before I leave.
-        </p>
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+      <div class="max-w-xl mb-6" data-reveal>
+        <h2 class="font-display text-xl font-bold">Also happy to help with&hellip;</h2>
+        <p class="text-sm text-black/55 mt-1">A few more examples — not exhaustive.</p>
       </div>
-
-      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12" data-reveal-stagger>
+      <ul class="flex flex-wrap gap-2" data-reveal>
         {
           generalHandymanJobs.map((job) => (
-            <li
-              data-reveal-item
-              class="flex items-start gap-2 rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-black/75"
-            >
-              <span class="text-volltar-orange mt-0.5 shrink-0">&#10003;</span>
+            <li class="rounded-full border border-black/10 bg-white px-3.5 py-1.5 text-sm text-black/70">
               {job}
             </li>
           ))
         }
       </ul>
-
-      <div class="space-y-6">
-        {standardServices.map((service) => <ServiceDetail service={service} expanded />)}
-      </div>
     </div>
   </section>
 
@@ -93,24 +170,31 @@ const relatedJobs = portfolioJobs.slice(0, 2);
     <ServicesAskCallout />
   </section>
 
-  <FAQList
-    items={servicesFAQ}
-    title="Services FAQ"
-    description="Common questions about the kind of work I take on."
-  />
-
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
-      <div>
-        <h2 class="text-2xl font-bold">See it in practice</h2>
-        <p class="text-black/60 mt-1">Portfolio write-ups with photos from real jobs.</p>
+  <section id="portfolio" class="scroll-mt-20 bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <div class="flex items-end justify-between mb-8 flex-wrap gap-4" data-reveal>
+        <div>
+          <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Portfolio</p>
+          <h2 class="font-display text-2xl font-bold mt-1">See it in practice</h2>
+          <p class="text-black/60 mt-1">Write-ups with photos from real jobs.</p>
+        </div>
+        <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline text-sm shrink-0">
+          All portfolio &rarr;
+        </a>
       </div>
-      <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline">All portfolio &rarr;</a>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6">
-      {relatedJobs.map((job) => <PortfolioCard job={job} />)}
+      <div class="grid md:grid-cols-2 gap-6" data-reveal-stagger>
+        {relatedJobs.map((job) => <PortfolioCard job={job} />)}
+      </div>
     </div>
   </section>
+
+  <div id="faq" class="scroll-mt-20">
+    <FAQList
+      items={servicesFAQ}
+      title="Services FAQ"
+      description="Common questions about the kind of work I take on."
+    />
+  </div>
 
   <CTABanner
     title="Got a job in mind?"
