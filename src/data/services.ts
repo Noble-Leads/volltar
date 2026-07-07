@@ -101,7 +101,7 @@ export const services: Service[] = [
     blurb:
       "The everyday handyman jobs: tiling, flat-pack furniture, shelving, small fixes and the kind of work that needs someone careful rather than rushed.",
     icon: "wrench",
-    portfolioSlug: "rat-damaged-cable-repair",
+    portfolioSlug: "shelf-install",
     cardImage: "general-repairs.jpg",
     examples: [
       "Wall and splashback tiling",
