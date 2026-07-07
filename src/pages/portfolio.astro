@@ -10,11 +10,11 @@ import { portfolioJobs } from "../data/portfolio";
   title="Portfolio & Case Studies"
   description="Real jobs completed across the East Midlands, from whole-home CCTV and outdoor lighting to loft ladders and kitchen fittings. Read the full case studies."
 >
-  <section class="bg-volltar-black text-white spark-glow">
+  <section class="bg-volltar-black text-white spark-glow" data-page-hero>
     <div class="mx-auto max-w-6xl px-4 py-16">
-      <p class="text-volltar-orange font-semibold">Portfolio</p>
-      <h1 class="text-3xl md:text-4xl font-extrabold mt-2">Case studies from real jobs</h1>
-      <p class="text-white/70 mt-4 max-w-2xl text-lg">
+      <p class="text-volltar-orange font-semibold" data-page-hero-item>Portfolio</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold mt-2" data-page-hero-item>Case studies from real jobs</h1>
+      <p class="text-white/70 mt-4 max-w-2xl text-lg" data-page-hero-item>
         A selection of work completed across the East Midlands. Each one is written up so you can see the
         situation, how it was tackled and how it turned out, with photos from the job itself.
       </p>
@@ -22,11 +22,11 @@ import { portfolioJobs } from "../data/portfolio";
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-16">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-stagger>
       {portfolioJobs.map((job) => <PortfolioCard job={job} />)}
     </div>
 
-    <div class="mt-16 bg-volltar-offwhite border border-black/10 rounded-xl p-8 text-center">
+    <div class="mt-16 bg-volltar-offwhite border border-black/10 rounded-xl p-8 text-center" data-reveal-scale>
       <h2 class="text-xl font-bold">More case studies added as jobs are completed</h2>
       <p class="text-black/70 mt-2 max-w-xl mx-auto">
         Smart home, lighting and CCTV projects are the work I enjoy most. If you have something in mind, get in

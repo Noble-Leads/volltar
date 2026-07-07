@@ -5,18 +5,15 @@ import ProcessSteps from "../components/ProcessSteps.astro";
 import FAQList from "../components/FAQList.astro";
 import CTABanner from "../components/CTABanner.astro";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
-import FeaturedCaseStudy from "../components/FeaturedCaseStudy.astro";
+import HomeTrustSection from "../components/HomeTrustSection.astro";
 import TestimonialsSection from "../components/TestimonialsSection.astro";
 import { services, featuredService, standardServices } from "../data/services";
-import { portfolioJobs } from "../data/portfolio";
 import { testimonials } from "../data/testimonials";
 import { site } from "../data/site";
 import { generalFAQ } from "../data/faq";
 import shearwaterBefore from "../assets/hero/shearwater-before.jpg";
 import shearwaterAfter from "../assets/hero/shearwater-after.jpg";
 
-const [leadJob, ...otherJobs] = portfolioJobs;
-const secondaryJobs = otherJobs.slice(0, 2);
 const highlightTestimonials = testimonials.slice(0, 3);
 const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Polish?").slice(0, 4);
 ---
@@ -47,7 +44,7 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
             href="/portfolio"
             class="border border-white/30 px-6 py-3 rounded-md hover:border-volltar-orange hover:text-volltar-orange transition-colors"
           >
-            See Case Studies
+            See Portfolio
           </a>
         </div>
         <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70" data-hero-item>
@@ -78,7 +75,7 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
     </div>
   </section>
 
-  <section class="bg-volltar-offwhite border-b border-black/10">
+  <section class="bg-volltar-offwhite border-b border-black/10" data-reveal-fade>
     <div class="mx-auto max-w-6xl px-4 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-black/70">
       <span class="font-semibold text-volltar-black">Covering the East Midlands</span>
       {site.areas.map((area) => <span class="flex items-center gap-2"><span class="text-volltar-orange">&#9679;</span>{area}</span>)}
@@ -103,7 +100,7 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
     </div>
   </section>
 
-  <FeaturedCaseStudy lead={leadJob} secondary={secondaryJobs} />
+  <HomeTrustSection />
 
   <ProcessSteps />
 

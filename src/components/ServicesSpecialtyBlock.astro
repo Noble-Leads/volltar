@@ -65,7 +65,7 @@ const jobHref = job ? `/portfolio/${job.slug}` : undefined;
       <div class="lg:col-span-7 order-1 lg:order-2" data-reveal>
         {
           img && (
-            <div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl" data-reveal-image>
               <Image
                 src={img}
                 alt={job?.title ?? service.title}

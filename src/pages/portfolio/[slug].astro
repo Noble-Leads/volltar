@@ -25,18 +25,18 @@ const gallery = job.gallery
 <BaseLayout title={`${job.title} | Case Study`} description={job.summary}>
   <article>
     <!-- Hero -->
-    <header class="bg-volltar-black text-white spark-glow">
+    <header class="bg-volltar-black text-white spark-glow" data-page-hero>
       <div class="mx-auto max-w-6xl px-4 py-14 grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <a href="/portfolio" class="text-sm text-white/60 hover:text-volltar-orange transition-colors">
+          <a href="/portfolio" class="text-sm text-white/60 hover:text-volltar-orange transition-colors" data-page-hero-item>
             &larr; Back to portfolio
           </a>
-          <span class="block mt-6 text-xs font-bold uppercase tracking-wide text-volltar-orange">
+          <span class="block mt-6 text-xs font-bold uppercase tracking-wide text-volltar-orange" data-page-hero-item>
             {job.serviceTag}
           </span>
-          <h1 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">{job.title}</h1>
-          <p class="text-white/70 mt-4 text-lg">{job.summary}</p>
-          <dl class="mt-8 grid grid-cols-2 gap-4">
+          <h1 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight" data-page-hero-item>{job.title}</h1>
+          <p class="text-white/70 mt-4 text-lg" data-page-hero-item>{job.summary}</p>
+          <dl class="mt-8 grid grid-cols-2 gap-4" data-page-hero-item>
             {
               job.facts.map((fact) => (
                 <div class="border-l-2 border-volltar-orange/60 pl-3">
@@ -49,7 +49,7 @@ const gallery = job.gallery
         </div>
         {
           cover && (
-            <div class="rounded-2xl overflow-hidden border border-white/10">
+            <div class="rounded-2xl overflow-hidden border border-white/10" data-reveal-image>
               <Image
                 src={cover}
                 alt={job.title}
@@ -65,19 +65,19 @@ const gallery = job.gallery
 
     <!-- Write-up -->
     <div class="mx-auto max-w-3xl px-4 py-16">
-      <section>
+      <section data-reveal>
         <h2 class="text-sm font-bold uppercase tracking-wide text-volltar-orange">The challenge</h2>
         <p class="text-lg text-black/80 mt-3 leading-relaxed">{job.challenge}</p>
       </section>
 
-      <section class="mt-12">
+      <section class="mt-12" data-reveal>
         <h2 class="text-sm font-bold uppercase tracking-wide text-volltar-orange">The approach</h2>
         <div class="mt-3 space-y-4">
           {job.approach.map((para) => <p class="text-black/80 leading-relaxed">{para}</p>)}
         </div>
       </section>
 
-      <section class="mt-12">
+      <section class="mt-12" data-reveal>
         <h2 class="text-sm font-bold uppercase tracking-wide text-volltar-orange">The result</h2>
         <p class="text-lg text-black/80 mt-3 leading-relaxed">{job.result}</p>
       </section>
@@ -88,10 +88,10 @@ const gallery = job.gallery
       gallery.length > 0 && (
         <div class="bg-volltar-offwhite border-y border-black/10">
           <div class="mx-auto max-w-6xl px-4 py-16">
-            <h2 class="text-2xl font-bold">Photos from the job</h2>
-            <div class="grid sm:grid-cols-2 gap-6 mt-8">
+            <h2 class="text-2xl font-bold" data-reveal>Photos from the job</h2>
+            <div class="grid sm:grid-cols-2 gap-6 mt-8" data-reveal-stagger>
               {gallery.map((item) => (
-                <figure class="bg-white rounded-xl overflow-hidden border border-black/10">
+                <figure data-reveal-item data-hover-lift class="bg-white rounded-xl overflow-hidden border border-black/10">
                   <Image
                     src={item.resolved!}
                     alt={item.alt}
@@ -112,7 +112,7 @@ const gallery = job.gallery
 
     <!-- CTA + next -->
     <div class="mx-auto max-w-6xl px-4 py-16">
-      <div class="bg-volltar-black text-white rounded-2xl p-8 md:p-10 grid md:grid-cols-2 gap-6 items-center spark-glow">
+      <div class="bg-volltar-black text-white rounded-2xl p-8 md:p-10 grid md:grid-cols-2 gap-6 items-center spark-glow" data-reveal-scale>
         <div>
           <h2 class="text-2xl font-bold">Got a similar job in mind?</h2>
           <p class="text-white/70 mt-2">
@@ -134,6 +134,7 @@ const gallery = job.gallery
           <a
             href={`/portfolio/${nextJob.slug}`}
             class="mt-8 flex items-center justify-between rounded-xl border border-black/10 bg-white px-6 py-5 hover:border-volltar-orange/50 hover:shadow-md transition-all group"
+            data-hover-lift
           >
             <span>
               <span class="block text-xs uppercase tracking-wide text-black/50">Next in portfolio</span>

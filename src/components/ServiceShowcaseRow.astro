@@ -26,14 +26,13 @@ const imgPosition = service.cardImagePosition ?? "center";
 
 <article
   id={service.slug}
-  data-reveal
-  class:list={[
-    "scroll-mt-24 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm",
-    reverse && "md:flex-row-reverse",
-  ]}
+  data-hover-lift
+  data-reveal-left={!reverse ? "" : undefined}
+  data-reveal-right={reverse ? "" : undefined}
+  class="scroll-mt-24 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm"
 >
   <div class="grid md:grid-cols-2">
-    <div class:list={["relative min-h-[14rem] md:min-h-full bg-volltar-charcoal", reverse && "md:order-2"]}>
+    <div class:list={["relative min-h-[14rem] md:min-h-full bg-volltar-charcoal overflow-hidden", reverse && "md:order-2"]}>
       {
         beforeImg && afterImg && beforeAfter ? (
           <BeforeAfterSlider

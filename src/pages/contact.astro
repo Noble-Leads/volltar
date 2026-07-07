@@ -26,6 +26,7 @@ import { contactFAQ } from "../data/faq";
       <form
         action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
         method="POST"
+        data-reveal-left
         class="lg:col-span-3 space-y-4 bg-white border border-black/10 rounded-xl p-6 md:p-8 shadow-sm"
       >
         <div>
@@ -89,7 +90,7 @@ import { contactFAQ } from "../data/faq";
         </button>
       </form>
 
-      <div class="lg:col-span-2 space-y-6">
+      <div class="lg:col-span-2 space-y-6" data-reveal-right>
         <div class="flex overflow-hidden rounded-xl border border-black/10 bg-volltar-black shadow-sm">
           <Image
             src={hubertContact}

@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 const path = Astro.url.pathname;
 ---
 
-<header class="bg-white text-volltar-black sticky top-0 z-50 border-b border-black/10 shadow-sm">
+<header data-header class="bg-white text-volltar-black sticky top-0 z-50 border-b border-black/10 shadow-sm">
   <div class="h-1 spark-bar" aria-hidden="true"></div>
   <div class="mx-auto max-w-6xl flex items-center justify-between px-4 py-3">
     <a href="/" class="flex items-center gap-2" aria-label={`${site.name} home`}>

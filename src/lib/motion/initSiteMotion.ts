@@ -16,8 +16,11 @@ export function initSiteMotion() {
   }
 
   motionContext = gsap.context(() => {
+    initHeader();
     initHero();
+    initPageHero();
     initScrollReveal();
+    initImageReveal();
     initAboutPortrait();
     initBeforeAfter();
     initProcessSteps();
@@ -27,6 +30,13 @@ export function initSiteMotion() {
 
   ScrollTrigger.refresh();
   window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+}
+
+function initHeader() {
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  if (!header) return;
+
+  gsap.fromTo(header, { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" });
 }
 
 function initHero() {
@@ -61,23 +71,59 @@ function initHero() {
   }
 }
 
+function initPageHero() {
+  document.querySelectorAll<HTMLElement>("[data-page-hero]").forEach((hero) => {
+    const items = gsap.utils.toArray<HTMLElement>(hero.querySelectorAll("[data-page-hero-item]"));
+    const slot = hero.querySelector<HTMLElement>("[data-page-hero-slot]");
+
+    if (!items.length) return;
+
+    items.forEach((item) => gsap.set(item, { clearProps: "animation" }));
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.08 });
+
+    tl.fromTo(items, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.09 });
+
+    if (slot) {
+      gsap.set(slot, { clearProps: "animation" });
+      tl.fromTo(slot, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, "-=0.45");
+    }
+  });
+}
+
 function initScrollReveal() {
-  gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-    gsap.fromTo(
-      el,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.85,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-          once: true,
-        },
-      }
-    );
+  const presets: Array<{
+    selector: string;
+    from: gsap.TweenVars;
+    duration?: number;
+  }> = [
+    { selector: "[data-reveal]", from: { y: 36, opacity: 0 } },
+    { selector: "[data-reveal-left]", from: { x: -40, opacity: 0 } },
+    { selector: "[data-reveal-right]", from: { x: 40, opacity: 0 } },
+    { selector: "[data-reveal-fade]", from: { y: 12, opacity: 0 }, duration: 0.65 },
+    { selector: "[data-reveal-scale]", from: { scale: 0.97, opacity: 0 }, duration: 0.8 },
+  ];
+
+  presets.forEach(({ selector, from, duration = 0.85 }) => {
+    gsap.utils.toArray<HTMLElement>(selector).forEach((el) => {
+      gsap.fromTo(
+        el,
+        from,
+        {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
+    });
   });
 
   gsap.utils.toArray<HTMLElement>("[data-reveal-stagger]").forEach((container) => {
@@ -106,11 +152,45 @@ function initScrollReveal() {
 
   gsap.utils.toArray<HTMLElement>("[data-hover-lift]").forEach((card) => {
     card.addEventListener("mouseenter", () => {
-      gsap.to(card, { y: -6, duration: 0.28, ease: "power2.out", overwrite: "auto" });
+      gsap.to(card, { y: -5, duration: 0.28, ease: "power2.out", overwrite: "auto" });
     });
     card.addEventListener("mouseleave", () => {
       gsap.to(card, { y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" });
     });
+  });
+
+  gsap.utils.toArray<HTMLElement>("[data-hover-glow]").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      gsap.to(el, {
+        boxShadow: "0 16px 40px -12px rgba(230, 168, 30, 0.22)",
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    });
+    el.addEventListener("mouseleave", () => {
+      gsap.to(el, { boxShadow: "0 0 0 rgba(0,0,0,0)", duration: 0.35, ease: "power2.out", overwrite: "auto" });
+    });
+  });
+}
+
+function initImageReveal() {
+  gsap.utils.toArray<HTMLElement>("[data-reveal-image]").forEach((el) => {
+    gsap.fromTo(
+      el,
+      { scale: 1.05, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.95,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true,
+        },
+      }
+    );
   });
 }
 
