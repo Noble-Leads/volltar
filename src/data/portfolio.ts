@@ -318,8 +318,8 @@ export const portfolioJobs: PortfolioJob[] = [
     gallery: [
       {
         src: "rat-cable-repair/photo-1.jpg",
-        alt: "Rodent damage to a cable run being inspected",
-        caption: "Tracing the fault to the section the rats had chewed through.",
+        alt: "Ceiling opened up where rats had chewed through the cable run",
+        caption: "Access holes cut in the ceiling to reach the section the rats had chewed through.",
       },
       {
         src: "rat-cable-repair/photo-2.jpg",
