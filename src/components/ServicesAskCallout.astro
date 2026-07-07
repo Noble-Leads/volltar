@@ -1,0 +1,45 @@
+---
+import { site } from "../data/site";
+---
+
+<aside
+  class="relative overflow-hidden rounded-2xl border border-volltar-orange/30 bg-volltar-black text-white p-8 md:p-10 spark-glow"
+  data-reveal
+>
+  <div class="absolute top-0 inset-x-0 h-1 spark-bar" aria-hidden="true"></div>
+
+  <div class="grid md:grid-cols-[1fr_auto] gap-8 items-center">
+    <div class="max-w-xl">
+      <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Not sure if I do it?</p>
+      <h2 class="font-display text-2xl md:text-3xl font-bold mt-2 leading-tight">
+        If it is not listed, ring or message anyway.
+      </h2>
+      <p class="text-white/75 mt-3 leading-relaxed">
+        The list on this page is a guide, not a limit. Tiling, furniture builds, odd tech jobs, something you are
+        not sure who to ask about — describe it and I will tell you straight whether I can help.
+      </p>
+      <p class="text-sm text-white/50 mt-3">{site.replyTime}</p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+      <a
+        href={site.phoneHref}
+        class="inline-flex items-center justify-center rounded-lg bg-volltar-orange px-6 py-3 text-sm font-semibold text-volltar-black transition-colors hover:bg-volltar-orange-light"
+      >
+        Call {site.phone}
+      </a>
+      <a
+        href={site.whatsappHref}
+        class="inline-flex items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-volltar-orange hover:text-volltar-orange"
+      >
+        Message on WhatsApp
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-white/40 hover:text-white"
+      >
+        Send a message
+      </a>
+    </div>
+  </div>
+</aside>

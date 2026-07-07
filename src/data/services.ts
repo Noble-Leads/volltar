@@ -12,25 +12,33 @@ export type Service = {
   cardImage?: string;
   /** CSS object-position for the card thumbnail, e.g. "center 30%". */
   cardImagePosition?: string;
+  /** Optional before/after slider on the service card image area. */
+  cardBeforeAfter?: {
+    before: string;
+    after: string;
+    beforeAlt: string;
+    afterAlt: string;
+  };
   examples: string[];
 };
 
 export const services: Service[] = [
   {
     slug: "smart-home-lighting-cctv",
-    title: "Smart Home, Lighting & CCTV",
+    title: "Lighting, CCTV & Home Tech",
     blurb:
-      "LED and feature lighting, smart home setups, sound and comfort features, plus CCTV installation. This is the work I enjoy most and the finish always gets extra attention.",
+      "The work I focus on most: CCTV and security, lighting done properly, HiFi and AV setup, plus networks, WiFi and home cloud if you want storage or remote access sorted without the faff.",
     icon: "camera",
     featured: true,
     portfolioSlug: "cctv-camera-install",
     cardImage: "smart-home-lighting-cctv.jpg",
     examples: [
       "Whole-home CCTV with labelled cabling and remote viewing",
-      "Wired access points and network points for reliable wifi",
-      "LED under-cabinet and plinth lighting",
-      "Smart switches and dimmable lighting circuits",
-      "Feature wall lighting and TV backlighting",
+      "Indoor, outdoor and feature lighting",
+      "HiFi, speakers and TV / AV wiring",
+      "Mesh WiFi, access points and wired network points",
+      "NAS, home cloud and backup setup",
+      "Smart switches, dimmers and home automation",
     ],
   },
   {
@@ -56,6 +64,13 @@ export const services: Service[] = [
       "Loft hatches, boarding, lighting and general loft improvements, done tidily and with dust sheets down.",
     icon: "home",
     portfolioSlug: "loft-hatch-lighting",
+    cardImage: "loft-attic.jpg",
+    cardBeforeAfter: {
+      before: "loft-before.jpg",
+      after: "loft-after.jpg",
+      beforeAlt: "Loft before new boarding and lighting",
+      afterAlt: "Loft after flooring and light fitted",
+    },
     examples: [
       "New drop-down loft ladders and enlarged hatches",
       "Loft lighting on its own switch",
@@ -72,7 +87,6 @@ export const services: Service[] = [
     icon: "lightbulb",
     portfolioSlug: "outdoor-lighting-garage",
     cardImage: "outdoor-lighting.jpg",
-    cardImagePosition: "center 35%",
     examples: [
       "Motion-sensor security lights front and rear",
       "Porch and back-door lighting",
@@ -85,16 +99,17 @@ export const services: Service[] = [
     slug: "general-repairs",
     title: "General Repairs & Home Improvements",
     blurb:
-      "From fixing damaged cabling to shelving, fittings and the odd unusual job, if it needs a careful pair of hands, get in touch.",
+      "The everyday handyman jobs: tiling, flat-pack furniture, shelving, small fixes and the kind of work that needs someone careful rather than rushed.",
     icon: "wrench",
     portfolioSlug: "rat-damaged-cable-repair",
     cardImage: "general-repairs.jpg",
     examples: [
+      "Wall and splashback tiling",
+      "Flat-pack furniture assembly (IKEA and similar)",
       "Shelving and bracket mounting",
       "Damaged cable repairs",
       "Small carpentry and fixing jobs",
       "Multiple small jobs in one visit",
-      "Odd jobs that need a careful finish",
     ],
   },
   {

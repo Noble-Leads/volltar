@@ -48,6 +48,11 @@ export const generalFAQ: FAQItem[] = [
 
 export const servicesFAQ: FAQItem[] = [
   {
+    question: "Do you do jobs that are not on the services page?",
+    answer:
+      "Usually worth asking. I do a wide mix of handyman work — tiling, flat-pack furniture, fittings, repairs and tech jobs. If it needs a Part P electrician or a full rewire I will say so upfront, but if it sounds like something I can help with, get in touch.",
+  },
+  {
     question: "Can you install CCTV and wifi at the same time?",
     answer:
       "Yes. A lot of CCTV jobs involve running cable back to a central point, which is a good time to add wired network points or an access point for stronger wifi. I can plan both together so the cabling is done once and kept tidy.",

@@ -5,6 +5,7 @@ import { getPortfolioJob } from "../data/portfolio";
 import { getPortfolioImage } from "../lib/portfolioImages";
 import { getServiceCardImage } from "../lib/serviceImages";
 import Icon from "./Icon.astro";
+import BeforeAfterSlider from "./BeforeAfterSlider.astro";
 
 interface Props {
   service: Service;
@@ -13,6 +14,9 @@ interface Props {
 
 const { service, variant = "default" } = Astro.props;
 const job = service.portfolioSlug ? getPortfolioJob(service.portfolioSlug) : undefined;
+const beforeAfter = service.cardBeforeAfter;
+const beforeImg = beforeAfter ? getServiceCardImage(beforeAfter.before) : undefined;
+const afterImg = beforeAfter ? getServiceCardImage(beforeAfter.after) : undefined;
 const img =
   (service.cardImage ? getServiceCardImage(service.cardImage) : undefined) ??
   (job ? getPortfolioImage(job.image) : undefined);
@@ -79,19 +83,31 @@ const iconClass = service.featured
       class:list={["group rounded-xl border overflow-hidden transition-shadow hover:shadow-md", cardClass]}
     >
       {
-        img && (
-          <a href={jobHref} class="block relative overflow-hidden h-32">
-            <Image
-              src={img}
-              alt={imgAlt}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              style={`object-position: ${imgPosition}`}
-              widths={[320, 480]}
-              sizes="(max-width: 768px) 100vw, 320px"
-              loading="lazy"
+        beforeImg && afterImg && beforeAfter ? (
+          <a href={jobHref} class="block relative overflow-hidden">
+            <BeforeAfterSlider
+              before={beforeImg}
+              after={afterImg}
+              beforeAlt={beforeAfter.beforeAlt}
+              afterAlt={beforeAfter.afterAlt}
+              class="rounded-none border-0 shadow-none [&_.before-after-knob]:h-9 [&_.before-after-knob]:w-9"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </a>
+        ) : (
+          img && (
+            <a href={jobHref} class="block relative overflow-hidden h-32">
+              <Image
+                src={img}
+                alt={imgAlt}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={`object-position: ${imgPosition}`}
+                widths={[320, 480]}
+                sizes="(max-width: 768px) 100vw, 320px"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </a>
+          )
         )
       }
       <div class="p-5">

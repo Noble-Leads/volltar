@@ -5,7 +5,9 @@ import ServiceDetail from "../components/ServiceDetail.astro";
 import FAQList from "../components/FAQList.astro";
 import CTABanner from "../components/CTABanner.astro";
 import PortfolioCard from "../components/PortfolioCard.astro";
+import ServicesAskCallout from "../components/ServicesAskCallout.astro";
 import { services, featuredService, standardServices } from "../data/services";
+import { focusAreas, generalHandymanJobs } from "../data/handymanRange";
 import { servicesFAQ } from "../data/faq";
 import { portfolioJobs } from "../data/portfolio";
 import { site } from "../data/site";
@@ -15,28 +17,80 @@ const relatedJobs = portfolioJobs.slice(0, 2);
 
 <BaseLayout
   title="Handyman Services"
-  description={`Sockets, lighting, loft work, CCTV and general home improvements across ${site.areas.join(", ")} and the East Midlands. Smart home and CCTV is our specialty.`}
+  description={`Handyman and home improvement across ${site.areas.join(", ")} and the East Midlands — CCTV, lighting, HiFi, networks, tiling, furniture builds and general jobs. Not sure if it is listed? Get in touch.`}
 >
   <PageHero
     eyebrow="Services"
-    title="Home improvements done properly"
-    description="Sockets, lighting, loft work, CCTV and general handyman jobs across the East Midlands. Smart home and security is the specialty."
+    title="Handyman work, done properly"
+    description="A wide mix of general jobs around the home — tiling, furniture builds, fittings and repairs — with extra focus on CCTV, lighting, HiFi, networks and home tech."
   />
 
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <div class="max-w-2xl mb-10">
-      <h2 class="text-2xl font-bold">Specialty</h2>
-      <p class="text-black/60 mt-2">Lighting, smart home and CCTV — the work I put the most care into.</p>
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="max-w-3xl" data-reveal>
+      <p class="text-lg text-black/75 leading-relaxed">
+        I take on most sensible handyman and home improvement work. Some jobs are bread-and-butter — a shelf, a
+        socket, flat-pack furniture from IKEA — others need more planning, like CCTV, lighting layouts or getting
+        your WiFi and home cloud sorted properly.
+      </p>
+      <p class="text-black/60 mt-4 leading-relaxed">
+        The sections below are a guide. If yours is not listed, it is still worth a call or a WhatsApp. I will tell
+        you honestly if it is something I can do.
+      </p>
     </div>
-    <ServiceDetail service={featuredService} expanded />
+  </section>
 
-    <div class="max-w-2xl mt-16 mb-10">
-      <h2 class="text-2xl font-bold">Everything else</h2>
-      <p class="text-black/60 mt-2">General home improvement, finished tidily. If it is not listed, ask anyway.</p>
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="max-w-2xl mb-8" data-reveal>
+      <h2 class="font-display text-2xl font-bold">Where I focus most</h2>
+      <p class="text-black/60 mt-2">
+        CCTV, lighting and home tech — the jobs where tidy cabling, the right kit and a proper finish really matter.
+      </p>
     </div>
-    <div class="space-y-6">
-      {standardServices.map((service) => <ServiceDetail service={service} expanded />)}
+
+    <ul class="flex flex-wrap gap-2 mb-8" data-reveal>
+      {
+        focusAreas.map((item) => (
+          <li class="rounded-full border border-volltar-orange/25 bg-volltar-orange/10 px-4 py-1.5 text-sm font-medium text-volltar-black">
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+
+    <ServiceDetail service={featuredService} expanded />
+  </section>
+
+  <section class="bg-volltar-offwhite border-y border-black/10">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <div class="max-w-2xl mb-8" data-reveal>
+        <h2 class="font-display text-2xl font-bold">General handyman jobs</h2>
+        <p class="text-black/60 mt-2">
+          Everyday work around the house — finished tidily, with dust sheets down and the mess cleared before I leave.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12" data-reveal-stagger>
+        {
+          generalHandymanJobs.map((job) => (
+            <li
+              data-reveal-item
+              class="flex items-start gap-2 rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-black/75"
+            >
+              <span class="text-volltar-orange mt-0.5 shrink-0">&#10003;</span>
+              {job}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="space-y-6">
+        {standardServices.map((service) => <ServiceDetail service={service} expanded />)}
+      </div>
     </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <ServicesAskCallout />
   </section>
 
   <FAQList
@@ -60,6 +114,6 @@ const relatedJobs = portfolioJobs.slice(0, 2);
 
   <CTABanner
     title="Got a job in mind?"
-    description="Tell me what you need and I will let you know what is involved and what it will cost."
+    description="Describe what you need — even if you are not sure it fits the list — and I will get back to you with next steps."
   />
 </BaseLayout>
