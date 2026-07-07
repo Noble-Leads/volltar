@@ -6,12 +6,18 @@ const portfolioHighlights = [
   "Kitchen tiling & sockets",
   "Loft boarding & lighting",
 ];
+
+const valueTabs = values.map((value, index) => ({
+  ...value,
+  index: index + 1,
+  short: ["Tidy work", "The finish", "Upfront"][index] ?? value.title,
+}));
 ---
 
 <section class="bg-volltar-black text-white spark-glow border-y border-white/10">
   <div class="h-1 spark-bar" aria-hidden="true"></div>
   <div class="mx-auto max-w-6xl px-4 py-16 md:py-20">
-    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       <div class="lg:col-span-5" data-reveal>
         <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">How I work</p>
         <h2 class="font-display text-2xl md:text-3xl font-bold mt-2 leading-tight">
@@ -42,19 +48,82 @@ const portfolioHighlights = [
         </a>
       </div>
 
-      <div class="lg:col-span-7 grid sm:grid-cols-3 gap-4" data-reveal-stagger>
-        {
-          values.map((value) => (
-            <div
-              data-reveal-item
-              class="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
-            >
-              <h3 class="font-display font-bold text-sm leading-snug">{value.title}</h3>
-              <p class="text-sm text-white/65 mt-2 leading-relaxed">{value.description}</p>
+      <div class="lg:col-span-7" data-reveal-right data-value-picker>
+        <div class="rounded-2xl border border-white/10 bg-white/[0.04] overflow-hidden backdrop-blur-sm shadow-[0_24px_60px_-20px_rgba(0,0,0,0.5)]">
+          <div class="value-picker-panel relative px-6 py-8 md:px-8 md:py-10 min-h-[11.5rem] md:min-h-[13rem]">
+            <div class="absolute top-6 right-6 md:top-8 md:right-8 flex items-center gap-2" aria-hidden="true">
+              <span data-value-dots class="flex gap-1.5">
+                {
+                  valueTabs.map((_, i) => (
+                    <span
+                      data-value-dot={i}
+                      class:list={[
+                        "h-1.5 rounded-full bg-white/20 transition-all duration-300",
+                        i === 0 ? "w-6 bg-volltar-orange" : "w-1.5",
+                      ]}
+                    />
+                  ))
+                }
+              </span>
             </div>
-          ))
-        }
+
+            <p data-value-index class="value-picker-index font-display text-5xl md:text-6xl font-extrabold text-volltar-orange/25 leading-none">
+              01
+            </p>
+            <h3 data-value-title class="value-picker-title font-display text-xl md:text-2xl font-bold mt-3 pr-16">
+              {valueTabs[0].title}
+            </h3>
+            <p data-value-desc class="value-picker-desc text-white/70 mt-3 max-w-lg leading-relaxed">
+              {valueTabs[0].description}
+            </p>
+          </div>
+
+          <div class="h-0.5 bg-white/10">
+            <div data-value-progress class="h-full w-1/3 bg-gradient-to-r from-volltar-orange to-volltar-orange-light origin-left"></div>
+          </div>
+
+          <div class="grid grid-cols-3 border-t border-white/10" role="tablist" aria-label="How I work">
+            {
+              valueTabs.map((tab, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  data-value-trigger={i}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  class:list={[
+                    "value-picker-tab relative px-3 py-4 md:px-5 md:py-5 text-left transition-colors",
+                    i === 0 ? "bg-white/[0.06] text-white" : "text-white/50 hover:text-white/80 hover:bg-white/[0.03]",
+                    i > 0 && "border-l border-white/10",
+                  ]}
+                >
+                  <span class="block text-[10px] font-bold uppercase tracking-widest text-volltar-orange/80">
+                    0{tab.index}
+                  </span>
+                  <span class="block text-xs md:text-sm font-semibold mt-1 leading-tight">{tab.short}</span>
+                  <span
+                    data-value-tab-indicator
+                    class:list={[
+                      "absolute inset-x-0 bottom-0 h-0.5 bg-volltar-orange transition-transform duration-300 origin-left",
+                      i === 0 ? "scale-x-100" : "scale-x-0",
+                    ]}
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <p class="text-xs text-white/40 mt-3 text-center md:text-left">Tap a topic — cycles automatically every few seconds</p>
+
+        <script type="application/json" id="value-picker-data" set:html={JSON.stringify(valueTabs)} />
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .value-picker-tab[aria-selected="true"] {
+    color: white;
+    background-color: rgb(255 255 255 / 0.06);
+  }
+</style>

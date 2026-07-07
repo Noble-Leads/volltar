@@ -24,6 +24,7 @@ export function initSiteMotion() {
     initAboutPortrait();
     initBeforeAfter();
     initProcessSteps();
+    initValuePicker();
     initFaq();
     initMobileBar();
   });
@@ -394,6 +395,163 @@ function initProcessSteps() {
       });
     });
   });
+}
+
+function initValuePicker() {
+  const root = document.querySelector<HTMLElement>("[data-value-picker]");
+  const dataEl = document.getElementById("value-picker-data");
+  if (!root || !dataEl) return;
+
+  type ValueTab = { title: string; description: string; index: number; short: string };
+  let items: ValueTab[];
+  try {
+    items = JSON.parse(dataEl.textContent ?? "[]");
+  } catch {
+    return;
+  }
+  if (!items.length) return;
+
+  const titleEl = root.querySelector<HTMLElement>("[data-value-title]");
+  const descEl = root.querySelector<HTMLElement>("[data-value-desc]");
+  const indexEl = root.querySelector<HTMLElement>("[data-value-index]");
+  const progressEl = root.querySelector<HTMLElement>("[data-value-progress]");
+  const triggers = gsap.utils.toArray<HTMLButtonElement>(root.querySelectorAll("[data-value-trigger]"));
+  const dots = gsap.utils.toArray<HTMLElement>(root.querySelectorAll("[data-value-dot]"));
+
+  if (!titleEl || !descEl || !indexEl || !progressEl || !triggers.length) return;
+
+  let active = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+  let animating = false;
+
+  const setTabState = (index: number) => {
+    triggers.forEach((btn, i) => {
+      const selected = i === index;
+      btn.setAttribute("aria-selected", selected ? "true" : "false");
+      btn.classList.toggle("bg-white/[0.06]", selected);
+      btn.classList.toggle("text-white", selected);
+      btn.classList.toggle("text-white/50", !selected);
+
+      const indicator = btn.querySelector<HTMLElement>("[data-value-tab-indicator]");
+      if (indicator) {
+        gsap.to(indicator, {
+          scaleX: selected ? 1 : 0,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      gsap.to(dot, {
+        width: i === index ? 24 : 6,
+        backgroundColor: i === index ? "rgb(230, 168, 30)" : "rgb(255 255 255 / 0.2)",
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    });
+
+    gsap.to(progressEl, {
+      scaleX: (index + 1) / items.length,
+      duration: 0.45,
+      ease: "power2.inOut",
+      overwrite: "auto",
+    });
+  };
+
+  const show = (index: number) => {
+    if (animating || index === active) return;
+    animating = true;
+    active = index;
+    const item = items[index];
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power2.inOut" },
+      onComplete: () => {
+        animating = false;
+      },
+    });
+
+    tl.to([titleEl, descEl, indexEl], { y: -8, opacity: 0, duration: 0.2 })
+      .add(() => {
+        titleEl.textContent = item.title;
+        descEl.textContent = item.description;
+        indexEl.textContent = String(item.index).padStart(2, "0");
+        setTabState(index);
+      })
+      .fromTo(
+        [titleEl, descEl, indexEl],
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, stagger: 0.05, ease: "power2.out" }
+      );
+  };
+
+  const next = () => show((active + 1) % items.length);
+
+  const startAuto = () => {
+    stopAuto();
+    timer = setInterval(next, 5000);
+  };
+
+  const stopAuto = () => {
+    if (timer) clearInterval(timer);
+    timer = null;
+  };
+
+  gsap.set(progressEl, { scaleX: 1 / items.length, transformOrigin: "left center" });
+
+  gsap.fromTo(
+    root.querySelector(".value-picker-panel"),
+    { y: 24, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: root,
+        start: "top 85%",
+        once: true,
+      },
+    }
+  );
+
+  gsap.fromTo(
+    triggers,
+    { y: 16, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.55,
+      stagger: 0.08,
+      ease: "power2.out",
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: root,
+        start: "top 85%",
+        once: true,
+      },
+    }
+  );
+
+  triggers.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      stopAuto();
+      show(i);
+      startAuto();
+    });
+  });
+
+  root.addEventListener("mouseenter", stopAuto);
+  root.addEventListener("mouseleave", startAuto);
+  root.addEventListener("focusin", stopAuto);
+  root.addEventListener("focusout", (e) => {
+    if (!root.contains(e.relatedTarget as Node)) startAuto();
+  });
+
+  startAuto();
 }
 
 function initBeforeAfter() {
