@@ -10,6 +10,8 @@ export type Service = {
   portfolioSlug?: string;
   /** Optional card thumbnail under /src/assets/services/ — overrides portfolio cover. */
   cardImage?: string;
+  /** CSS object-position for the card thumbnail, e.g. "center 30%". */
+  cardImagePosition?: string;
   examples: string[];
 };
 
@@ -69,6 +71,8 @@ export const services: Service[] = [
       "Security lights, porch lights and garden lighting fitted neatly, with cabling routed out of sight wherever possible.",
     icon: "lightbulb",
     portfolioSlug: "outdoor-lighting-garage",
+    cardImage: "outdoor-lighting.jpg",
+    cardImagePosition: "center 35%",
     examples: [
       "Motion-sensor security lights front and rear",
       "Porch and back-door lighting",
@@ -84,6 +88,7 @@ export const services: Service[] = [
       "From fixing damaged cabling to shelving, fittings and the odd unusual job, if it needs a careful pair of hands, get in touch.",
     icon: "wrench",
     portfolioSlug: "rat-damaged-cable-repair",
+    cardImage: "general-repairs.jpg",
     examples: [
       "Shelving and bracket mounting",
       "Damaged cable repairs",

@@ -83,7 +83,7 @@ export const portfolioJobs: PortfolioJob[] = [
     serviceTag: "Outdoor Lighting",
     summary:
       "Power restored to a detached garage and four security lights added around the property, with cabling kept tidy on the brickwork.",
-    image: "outdoor-lighting-garage/photo-2.jpg",
+    image: "outdoor-lighting-garage/photo-3.jpg",
     completed: "2025",
     facts: [
       { label: "Service", value: "Outdoor Lighting & Power" },

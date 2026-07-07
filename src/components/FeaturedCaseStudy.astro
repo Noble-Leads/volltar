@@ -17,7 +17,7 @@ const leadHref = `/portfolio/${lead.slug}`;
   <div class="mx-auto max-w-6xl px-4 py-16">
     <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
       <div>
-        <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Case study</p>
+        <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Portfolio</p>
         <h2 class="font-display text-2xl font-bold mt-1">Written up with photos from the job</h2>
       </div>
       <a href="/portfolio" class="text-volltar-orange font-semibold hover:underline text-sm">See all &rarr;</a>
@@ -36,7 +36,7 @@ const leadHref = `/portfolio/${lead.slug}`;
               <Image
                 src={leadImg}
                 alt={lead.title}
-                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                 widths={[600, 900, 1200]}
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 loading="lazy"
