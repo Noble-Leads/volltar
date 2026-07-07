@@ -12,8 +12,8 @@ export type Service = {
   cardImage?: string;
   /** CSS object-position for the card thumbnail, e.g. "center 30%". */
   cardImagePosition?: string;
-  /** Optional before/after slider on the service card image area. */
-  cardBeforeAfter?: {
+  /** Optional before/after slider on the services page detail block. */
+  beforeAfter?: {
     before: string;
     after: string;
     beforeAlt: string;
@@ -65,7 +65,7 @@ export const services: Service[] = [
     icon: "home",
     portfolioSlug: "loft-hatch-lighting",
     cardImage: "loft-attic.jpg",
-    cardBeforeAfter: {
+    beforeAfter: {
       before: "loft-before.jpg",
       after: "loft-after.jpg",
       beforeAlt: "Loft before new boarding and lighting",
