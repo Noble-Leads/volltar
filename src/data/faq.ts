@@ -12,12 +12,12 @@ export const generalFAQ: FAQItem[] = [
   {
     question: "Do you work weekends?",
     answer:
-      "Yes. Weekend appointments are available if weekdays do not suit — useful if you are at work during the week. Get in touch with a description of the job and we can find a slot.",
+      "Yes. Weekend appointments are available if weekdays do not suit, useful if you are at work during the week. Get in touch with a description of the job and we can find a slot.",
   },
   {
     question: "Can we speak Polish?",
     answer:
-      "Yes — fluent in both Polish and English. Happy to discuss the job in whichever language suits you.",
+      "Yes, fluent in both Polish and English. Happy to discuss the job in whichever language suits you.",
   },
   {
     question: "Do you offer emergency callouts?",
@@ -50,7 +50,7 @@ export const servicesFAQ: FAQItem[] = [
   {
     question: "Do you do jobs that are not on the services page?",
     answer:
-      "Usually worth asking. I do a wide mix of handyman work — tiling, flat-pack furniture, fittings, repairs and tech jobs. If it needs a Part P electrician or a full rewire I will say so upfront, but if it sounds like something I can help with, get in touch.",
+      "Usually worth asking. I do a wide mix of handyman work: tiling, flat-pack furniture, fittings, repairs and tech jobs. If it needs a Part P electrician or a full rewire I will say so upfront, but if it sounds like something I can help with, get in touch.",
   },
   {
     question: "Can you install CCTV and wifi at the same time?",
@@ -83,7 +83,7 @@ export const contactFAQ: FAQItem[] = [
   {
     question: "How soon will I hear back?",
     answer:
-      "I usually reply within a day. If it is urgent, mention that when you get in touch — emergency callouts are available with a £300 minimum charge.",
+      "I usually reply within a day. If it is urgent, mention that when you get in touch. Emergency callouts are available with a £300 minimum charge.",
   },
   {
     question: "Do I need to be home for a quote?",

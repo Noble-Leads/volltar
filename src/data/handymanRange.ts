@@ -1,4 +1,4 @@
-/** Focus areas Hubert puts extra care into — shown on the services page. */
+/** Focus areas Hubert puts extra care into; shown on the services page. */
 export const focusAreas = [
   "CCTV & security cameras",
   "Indoor & outdoor lighting",
@@ -8,7 +8,7 @@ export const focusAreas = [
   "Smart home features",
 ];
 
-/** General handyman work — illustrative, not exhaustive. */
+/** General handyman work; illustrative, not exhaustive. */
 export const generalHandymanJobs = [
   "Tiling & splashbacks",
   "Flat-pack furniture (IKEA & similar)",

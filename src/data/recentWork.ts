@@ -9,7 +9,7 @@ export type RecentWorkPhoto = {
   location?: string;
 };
 
-/** Photos for the homepage “recent work” strip — real jobs, rotated as new ones are added. */
+/** Photos for the homepage “recent work” strip: real jobs, rotated as new ones are added. */
 export function getRecentWorkPhotos(): RecentWorkPhoto[] {
   const picks: { jobSlug: string; galleryIndex: number }[] = [
     { jobSlug: "shearwater-kitchen-upgrade", galleryIndex: 1 },

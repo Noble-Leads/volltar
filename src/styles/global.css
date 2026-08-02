@@ -111,7 +111,7 @@ h4,
   will-change: transform;
 }
 
-/* CSS motion fallbacks — run until GSAP adds .motion-js to <html> */
+/* CSS motion fallbacks: run until GSAP adds .motion-js to <html> */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes motion-rise {
     from {

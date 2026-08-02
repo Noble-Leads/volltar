@@ -250,7 +250,7 @@ export const portfolioJobs: PortfolioJob[] = [
     location: "Chesterfield area",
     serviceTag: "Kitchen & Bathroom Fittings",
     summary:
-      "Grey tile backsplash fitted behind the hob, sockets repositioned and finished cleanly — the before-and-after on the homepage.",
+      "Grey tile backsplash fitted behind the hob, sockets repositioned and finished cleanly; the before-and-after on the homepage.",
     image: "shearwater-kitchen/photo-2.jpg",
     completed: "2020",
     facts: [
@@ -267,7 +267,7 @@ export const portfolioJobs: PortfolioJob[] = [
       "The grey tile splashback was fitted and finished around the sockets so the faceplates sit flush and level with the new surface.",
     ],
     result:
-      "A kitchen that looks deliberately finished rather than patched together — new splashback, sockets in the right places, and the sort of tidy detail work that shows in the photos.",
+      "A kitchen that looks deliberately finished rather than patched together: new splashback, sockets in the right places, and the sort of tidy detail work that shows in the photos.",
     gallery: [
       {
         src: "shearwater-kitchen/photo-1.jpg",
@@ -282,12 +282,12 @@ export const portfolioJobs: PortfolioJob[] = [
       {
         src: "shearwater-kitchen/photo-3.jpg",
         alt: "Socket back boxes cut into the grey tile splashback with wiring dressed ready for faceplates",
-        caption: "Sockets cut into the new splashback — wiring dressed and ready for the faceplates.",
+        caption: "Sockets cut into the new splashback, wiring dressed and ready for the faceplates.",
       },
       {
         src: "shearwater-kitchen/photo-4.jpg",
         alt: "Kitchen tiling and fittings during the job",
-        caption: "Work in progress — wall prepared and tiling under way.",
+        caption: "Work in progress: wall prepared and tiling under way.",
       },
     ],
   },
@@ -297,7 +297,7 @@ export const portfolioJobs: PortfolioJob[] = [
     location: "East Midlands",
     serviceTag: "General Repairs",
     summary:
-      "Emergency repair where rodents had chewed through a cable — fault found, damaged section replaced and the circuit made safe again.",
+      "Emergency repair where rodents had chewed through a cable: fault found, damaged section replaced and the circuit made safe again.",
     image: "rat-cable-repair/photo-1.jpg",
     completed: "2023",
     facts: [
@@ -307,14 +307,14 @@ export const portfolioJobs: PortfolioJob[] = [
       { label: "Outcome", value: "Circuit restored safely" },
     ],
     challenge:
-      "A cable had been chewed through by rats, leaving an intermittent fault that needed finding and fixing properly — not just taped over. The customer needed the circuit safe and working again without unnecessary upheaval.",
+      "A cable had been chewed through by rats, leaving an intermittent fault that needed finding and fixing properly, not just taped over. The customer needed the circuit safe and working again without unnecessary upheaval.",
     approach: [
       "The fault was traced along the run until the damaged section was found and the extent of the rodent damage confirmed.",
       "The chewed cable was cut back to sound copper, re-terminated and the join made properly rather than left as a temporary fix.",
       "The repair was tested before the circuit was switched back on, and the customer was talked through what had failed and what to watch for.",
     ],
     result:
-      "Power restored safely with a proper repair on the damaged section. The sort of urgent job where you need someone to turn up, diagnose it properly and leave it safe — not just patch it.",
+      "Power restored safely with a proper repair on the damaged section. The sort of urgent job where you need someone to turn up, diagnose it properly and leave it safe, not just patch it.",
     gallery: [
       {
         src: "rat-cable-repair/photo-1.jpg",
@@ -329,7 +329,7 @@ export const portfolioJobs: PortfolioJob[] = [
       {
         src: "rat-cable-repair/photo-3.jpg",
         alt: "Cable repair in progress",
-        caption: "Repair under way — proper termination rather than a temporary bodge.",
+        caption: "Repair under way: proper termination rather than a temporary bodge.",
       },
       {
         src: "rat-cable-repair/photo-4.jpg",
@@ -340,11 +340,11 @@ export const portfolioJobs: PortfolioJob[] = [
   },
   {
     slug: "beauty-salon-fitout",
-    title: "Beauty Salon — Lighting, Sink Counter & Socket",
+    title: "Beauty Salon: Lighting, Sink Counter & Socket",
     location: "Northampton",
     serviceTag: "Sockets & Switches",
     summary:
-      "New lighting, a counter with sink and a socket fitted for a beauty salon — commercial work finished cleanly around wet-area fittings.",
+      "New lighting, a counter with sink and a socket fitted for a beauty salon: commercial work finished cleanly around wet-area fittings.",
     image: "beauty-salon-fitout/photo-1.jpg",
     completed: "2021",
     facts: [
@@ -354,11 +354,11 @@ export const portfolioJobs: PortfolioJob[] = [
       { label: "Scope", value: "Light, counter, sink & socket" },
     ],
     challenge:
-      "A beauty salon needed better lighting for treatment work, a proper counter with sink fitted, and a socket where the equipment would actually be used — all in a working commercial space that had to stay usable.",
+      "A beauty salon needed better lighting for treatment work, a proper counter with sink fitted, and a socket where the equipment would actually be used, all in a working commercial space that had to stay usable.",
     approach: [
-      "New lighting was planned to suit the treatment area rather than just adding the brightest fitting available — even light where staff and clients need it.",
+      "New lighting was planned to suit the treatment area rather than just adding the brightest fitting available: even light where staff and clients need it.",
       "The counter and sink were fitted with cabling routed sensibly for a wet-area setup, and a socket added where the equipment would sit day to day.",
-      "Everything was tested and left tidy — important in a salon that cannot afford downtime or mess on the shop floor.",
+      "Everything was tested and left tidy, important in a salon that cannot afford downtime or mess on the shop floor.",
     ],
     result:
       "A salon that works properly for daily treatments: good light, a usable sink counter and power where it is needed. Commercial jobs need the same tidy finish as domestic work, just on a tighter schedule.",
@@ -371,7 +371,7 @@ export const portfolioJobs: PortfolioJob[] = [
       {
         src: "beauty-salon-fitout/photo-2.jpg",
         alt: "Salon counter and sink fitting during installation",
-        caption: "Counter and sink area — cabling planned around wet-area use.",
+        caption: "Counter and sink area: cabling planned around wet-area use.",
       },
       {
         src: "beauty-salon-fitout/photo-3.jpg",

@@ -31,7 +31,7 @@ const { variant = "light", showEmergency = false } = Astro.props;
         <span class:list={["font-semibold", variant === "dark" ? "text-volltar-orange" : "text-volltar-black"]}>
           {site.emergencyCallout.summary}
         </span>
-        {" — "}{site.emergencyCallout.minimum}. {site.emergencyCallout.detail}
+        {": "}{site.emergencyCallout.minimum}. {site.emergencyCallout.detail}
       </p>
     )
   }

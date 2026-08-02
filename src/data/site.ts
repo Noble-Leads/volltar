@@ -12,7 +12,7 @@ export const site = {
   /** Short line for footer and compact mentions. */
   availabilitySummary: "Weekend appointments available. Emergency callouts from £300 minimum.",
   weekendWork:
-    "Weekend appointments are available if weekdays do not suit — handy if you are at work during the week.",
+    "Weekend appointments are available if weekdays do not suit, handy if you are at work during the week.",
   replyTime: "I usually reply within a day.",
   emergencyCallout: {
     summary: "Emergency callouts available",

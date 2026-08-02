@@ -8,7 +8,7 @@ export type Service = {
   featured?: boolean;
   /** Portfolio case study linked from the card. */
   portfolioSlug?: string;
-  /** Optional card thumbnail under /src/assets/services/ — overrides portfolio cover. */
+  /** Optional card thumbnail under /src/assets/services/; overrides portfolio cover. */
   cardImage?: string;
   /** CSS object-position for the card thumbnail, e.g. "center 30%". */
   cardImagePosition?: string;
