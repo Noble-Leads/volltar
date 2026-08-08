@@ -31,6 +31,7 @@ export const services: Service[] = [
     icon: "bolt",
     portfolioSlug: "beauty-salon-fitout",
     cardImage: "sockets-switches.jpg",
+    cardImagePosition: "right",
     examples: [
       "Extra kitchen sockets for appliances",
       "Outdoor sockets for sheds and garages",
