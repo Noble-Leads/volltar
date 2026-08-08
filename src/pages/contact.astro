@@ -3,8 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import AreasStrip from "../components/AreasStrip.astro";
 import AvailabilityNotice from "../components/AvailabilityNotice.astro";
-import { Image } from "astro:assets";
-import logo from "../assets/logo.png";
 import { site } from "../data/site";
 ---
 
@@ -89,23 +87,6 @@ import { site } from "../data/site";
       </form>
 
       <div class="lg:col-span-2 space-y-6" data-reveal-right>
-        <div class="flex items-center gap-4 overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm p-5">
-          <Image
-            src={logo}
-            alt={`${site.name} logo`}
-            class="w-20 shrink-0 object-contain"
-            widths={[80, 160]}
-            width={80}
-            loading="lazy"
-          />
-          <div class="flex flex-col justify-center min-w-0">
-            <p class="font-semibold text-volltar-black">You will hear back from Hubert</p>
-            <p class="text-sm text-black/60 mt-1 leading-relaxed">
-              One person from first message to finished job. {site.replyTime} Phone is usually quickest.
-            </p>
-          </div>
-        </div>
-
         <div class="bg-volltar-black text-white rounded-xl p-6 spark-glow">
           <p class="font-semibold text-volltar-orange">Prefer to message directly?</p>
           <ul class="mt-4 space-y-3 text-white/80">

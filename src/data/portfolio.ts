@@ -64,11 +64,6 @@ export const portfolioJobs: PortfolioJob[] = [
         alt: "Garage exterior in daylight with cabling run neatly along the wall",
         caption: "Cable runs kept tight to the wall so they stay discreet in daylight.",
       },
-      {
-        src: "outdoor-lighting-garage/photo-1.jpg",
-        alt: "New sockets fitted to the garage brickwork with tidy cabling",
-        caption: "Power restored inside the garage with new sockets fitted to the brickwork.",
-      },
     ],
   },
   {
@@ -105,11 +100,6 @@ export const portfolioJobs: PortfolioJob[] = [
         src: "loft-hatch-lighting/photo-2.jpg",
         alt: "New light fitting wired into the loft space",
         caption: "A new light wired into the loft so the space is lit as soon as you go up.",
-      },
-      {
-        src: "loft-hatch-lighting/photo-3.jpg",
-        alt: "New loft light switch fitted neatly",
-        caption: "The loft light on its own switch for easy, safe access.",
       },
     ],
   },
@@ -186,11 +176,6 @@ export const portfolioJobs: PortfolioJob[] = [
         caption: "The new outside light checked after dark, lighting the door and step.",
       },
       {
-        src: "shelf-install/photo-3.jpg",
-        alt: "Exterior cable run kept tight to the brickwork feeding the new light and socket",
-        caption: "Cabling for the light and socket kept tight to the brickwork.",
-      },
-      {
         src: "shelf-install/photo-1.jpg",
         alt: "Close view of the shelf bracket fixed securely to the wall",
         caption: "Shelf brackets fixed into solid fixings and levelled to take real weight.",
@@ -200,7 +185,7 @@ export const portfolioJobs: PortfolioJob[] = [
   {
     slug: "shearwater-kitchen-upgrade",
     title: "Kitchen Backsplash, Sockets & Tiling",
-    location: "Chesterfield area",
+    location: "Chesterfield",
     serviceTag: "Kitchen & Bathroom Fittings",
     summary:
       "Grey tile backsplash fitted behind the hob, sockets repositioned and finished cleanly; the before-and-after on the homepage.",
@@ -241,53 +226,6 @@ export const portfolioJobs: PortfolioJob[] = [
         src: "shearwater-kitchen/photo-4.jpg",
         alt: "Kitchen tiling and fittings during the job",
         caption: "Work in progress: wall prepared and tiling under way.",
-      },
-    ],
-  },
-  {
-    slug: "rat-damaged-cable-repair",
-    title: "Rat-Damaged Cable Repaired & Made Safe",
-    location: "East Midlands",
-    serviceTag: "General Repairs",
-    summary:
-      "Emergency repair where rodents had chewed through a cable: fault found, damaged section replaced and the circuit made safe again.",
-    image: "rat-cable-repair/photo-1.jpg",
-    completed: "2023",
-    facts: [
-      { label: "Service", value: "Cable repair" },
-      { label: "Cause", value: "Rodent damage" },
-      { label: "Priority", value: "Urgent make-safe" },
-      { label: "Outcome", value: "Circuit restored safely" },
-    ],
-    challenge:
-      "A cable had been chewed through by rats, leaving an intermittent fault that needed finding and fixing properly, not just taped over. The customer needed the circuit safe and working again without unnecessary upheaval.",
-    approach: [
-      "The fault was traced along the run until the damaged section was found and the extent of the rodent damage confirmed.",
-      "The chewed cable was cut back to sound copper, re-terminated and the join made properly rather than left as a temporary fix.",
-      "The repair was tested before the circuit was switched back on, and the customer was talked through what had failed and what to watch for.",
-    ],
-    result:
-      "Power restored safely with a proper repair on the damaged section. The sort of urgent job where you need someone to turn up, diagnose it properly and leave it safe, not just patch it.",
-    gallery: [
-      {
-        src: "rat-cable-repair/photo-1.jpg",
-        alt: "Ceiling opened up where rats had chewed through the cable run",
-        caption: "Access holes cut in the ceiling to reach the section the rats had chewed through.",
-      },
-      {
-        src: "rat-cable-repair/photo-2.jpg",
-        alt: "Damaged cable exposed before repair",
-        caption: "The damaged section cut back to sound cable before re-termination.",
-      },
-      {
-        src: "rat-cable-repair/photo-3.jpg",
-        alt: "Cable repair in progress",
-        caption: "Repair under way: proper termination rather than a temporary bodge.",
-      },
-      {
-        src: "rat-cable-repair/photo-4.jpg",
-        alt: "Finished cable repair made safe",
-        caption: "Circuit tested and made safe before handover.",
       },
     ],
   },

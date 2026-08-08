@@ -47,13 +47,7 @@ export const services: Service[] = [
     icon: "home",
     featured: true,
     portfolioSlug: "loft-hatch-lighting",
-    cardImage: "loft-attic.jpg",
-    beforeAfter: {
-      before: "loft-before.jpg",
-      after: "loft-after.jpg",
-      beforeAlt: "Loft before new boarding and lighting",
-      afterAlt: "Loft after flooring and light fitted",
-    },
+    cardImagePosition: "center 25%",
     examples: [
       "New drop-down loft ladders and enlarged hatches",
       "Loft lighting on its own switch",
@@ -100,7 +94,6 @@ export const services: Service[] = [
       "Extractor fans, under cabinet lighting and fittings around kitchens and bathrooms, fitted cleanly and finished properly.",
     icon: "fire",
     portfolioSlug: "kitchen-extractor",
-    cardImage: "kitchen-bathroom.jpg",
     examples: [
       "Chimney extractor hoods and splashbacks",
       "Kitchen extractor wiring chased into walls",
