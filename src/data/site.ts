@@ -5,10 +5,8 @@ export const site = {
   phoneHref: "tel:+447404868410",
   whatsappHref: "https://wa.me/447404868410",
   email: "hubert@volltar.co.uk",
-  areas: ["Chesterfield", "Wellingborough", "Leicester"],
-  moreAreas: ["Mansfield", "Northampton", "Corby", "Derby", "Nottingham"],
-  areaBlurb:
-    "Based in Chesterfield, covering Derbyshire, Nottinghamshire, Leicestershire and Northamptonshire, out to Leicester and Wellingborough.",
+  areas: ["Chesterfield"],
+  areaBlurb: "Based in Chesterfield and surrounding areas.",
   /** Short line for footer and compact mentions. */
   availabilitySummary: "Weekend appointments available. Emergency callouts from £300 minimum.",
   weekendWork:
@@ -25,7 +23,6 @@ export const site = {
     { label: "Services", href: "/services" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
 };

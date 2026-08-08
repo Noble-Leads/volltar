@@ -1,4 +1,4 @@
-export type IconName = "bolt" | "lightbulb" | "home" | "wrench" | "fire" | "camera";
+export type IconName = "bolt" | "lightbulb" | "home" | "wrench" | "fire";
 
 export type Service = {
   slug: string;
@@ -24,24 +24,6 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "smart-home-lighting-cctv",
-    title: "Lighting, CCTV & Home Tech",
-    blurb:
-      "The work I focus on most: CCTV and security, lighting done properly, HiFi and AV setup, plus networks, WiFi and home cloud if you want storage or remote access sorted without the faff.",
-    icon: "camera",
-    featured: true,
-    portfolioSlug: "cctv-camera-install",
-    cardImage: "smart-home-lighting-cctv.jpg",
-    examples: [
-      "Whole-home CCTV with labelled cabling and remote viewing",
-      "Indoor, outdoor and feature lighting",
-      "HiFi, speakers and TV / AV wiring",
-      "Mesh WiFi, access points and wired network points",
-      "NAS, home cloud and backup setup",
-      "Smart switches, dimmers and home automation",
-    ],
-  },
-  {
     slug: "sockets-switches",
     title: "Sockets & Switches",
     blurb:
@@ -61,8 +43,9 @@ export const services: Service[] = [
     slug: "loft-and-attic",
     title: "Loft & Attic Work",
     blurb:
-      "Loft hatches, boarding, lighting and general loft improvements, done tidily and with dust sheets down.",
+      "Loft hatches, boarding and lighting, done tidily and with dust sheets down. One of the jobs I do most often.",
     icon: "home",
+    featured: true,
     portfolioSlug: "loft-hatch-lighting",
     cardImage: "loft-attic.jpg",
     beforeAfter: {
@@ -99,12 +82,10 @@ export const services: Service[] = [
     slug: "general-repairs",
     title: "General Repairs & Home Improvements",
     blurb:
-      "The everyday handyman jobs: tiling, flat-pack furniture, shelving, small fixes and the kind of work that needs someone careful rather than rushed.",
+      "The everyday handyman jobs: flat-pack furniture, shelving, small fixes and the kind of work that needs someone careful rather than rushed.",
     icon: "wrench",
     portfolioSlug: "shelf-install",
-    cardImage: "general-repairs.jpg",
     examples: [
-      "Wall and splashback tiling",
       "Flat-pack furniture assembly (IKEA and similar)",
       "Shelving and bracket mounting",
       "Damaged cable repairs",
@@ -118,7 +99,7 @@ export const services: Service[] = [
     blurb:
       "Extractor fans, under cabinet lighting and fittings around kitchens and bathrooms, fitted cleanly and finished properly.",
     icon: "fire",
-    portfolioSlug: "shearwater-kitchen-upgrade",
+    portfolioSlug: "kitchen-extractor",
     cardImage: "kitchen-bathroom.jpg",
     examples: [
       "Chimney extractor hoods and splashbacks",

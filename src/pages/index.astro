@@ -2,25 +2,18 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import ProcessSteps from "../components/ProcessSteps.astro";
-import FAQList from "../components/FAQList.astro";
 import CTABanner from "../components/CTABanner.astro";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import HomeTrustSection from "../components/HomeTrustSection.astro";
-import TestimonialsSection from "../components/TestimonialsSection.astro";
 import { services, featuredService, standardServices } from "../data/services";
-import { testimonials } from "../data/testimonials";
 import { site } from "../data/site";
-import { generalFAQ } from "../data/faq";
 import shearwaterBefore from "../assets/hero/shearwater-before.jpg";
 import shearwaterAfter from "../assets/hero/shearwater-after.jpg";
-
-const highlightTestimonials = testimonials.slice(0, 3);
-const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Polish?").slice(0, 4);
 ---
 
 <BaseLayout
   title="Handyman & Home Improvements"
-  description={`Volltar is a handyman and home improvement service covering ${site.areas.join(", ")}. Sockets, lighting, loft work, smart home and CCTV, all finished cleanly and tidily.`}
+  description={`Volltar is a handyman and home improvement service based in ${site.areas.join(", ")}. Loft boarding, indoor and outdoor lighting, sockets and general home improvements, all finished cleanly and tidily.`}
 >
   <section class="bg-volltar-black text-white spark-glow" data-hero>
     <div class="mx-auto max-w-6xl px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
@@ -30,7 +23,7 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
           Careful, tidy work you can trust in your home.
         </h1>
         <p class="mt-5 text-white/70 text-lg" data-hero-item>
-          From sockets and lighting to smart home features and CCTV, Volltar gets the job done properly and
+          From loft boarding and lighting to sockets and general repairs, Volltar gets the job done properly and
           leaves your home the way it was found, minus the problem.
         </p>
         <div class="mt-8 flex flex-wrap gap-4" data-hero-item>
@@ -76,10 +69,8 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
   </section>
 
   <section class="bg-volltar-offwhite border-b border-black/10" data-reveal-fade>
-    <div class="mx-auto max-w-6xl px-4 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-black/70">
-      <span class="font-semibold text-volltar-black">Covering the East Midlands</span>
-      {site.areas.map((area) => <span class="flex items-center gap-2"><span class="text-volltar-orange">&#9679;</span>{area}</span>)}
-      <span class="flex items-center gap-2"><span class="text-volltar-orange">&#9679;</span>& surrounding areas</span>
+    <div class="mx-auto max-w-6xl px-4 py-6 flex items-center justify-center gap-x-2 text-sm text-black/70">
+      <span class="font-semibold text-volltar-black">{site.areaBlurb}</span>
     </div>
   </section>
 
@@ -88,7 +79,7 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
       <div>
         <p class="text-volltar-orange text-sm font-semibold uppercase tracking-wide">Services</p>
         <h2 class="font-display text-2xl md:text-3xl font-bold mt-1">What I can help with</h2>
-        <p class="text-black/60 mt-2">General home improvements, with a specialty in smart features and CCTV.</p>
+        <p class="text-black/60 mt-2">General home improvements, with a focus on loft work and lighting.</p>
       </div>
       <a href="/services" class="text-volltar-orange font-semibold hover:underline text-sm shrink-0">View all services &rarr;</a>
     </div>
@@ -103,10 +94,6 @@ const homeFAQ = generalFAQ.filter((item) => item.question !== "Can we speak Poli
   <HomeTrustSection />
 
   <ProcessSteps />
-
-  <TestimonialsSection testimonials={highlightTestimonials} />
-
-  <FAQList items={homeFAQ} />
 
   <CTABanner showAvailability={false} />
 </BaseLayout>

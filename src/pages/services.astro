@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import FAQList from "../components/FAQList.astro";
 import CTABanner from "../components/CTABanner.astro";
 import PortfolioCard from "../components/PortfolioCard.astro";
 import ServicesAskCallout from "../components/ServicesAskCallout.astro";
@@ -11,12 +10,11 @@ import { Image } from "astro:assets";
 import { featuredService, standardServices } from "../data/services";
 import { generalHandymanJobs } from "../data/handymanRange";
 import { getServiceCardImage } from "../lib/serviceImages";
-import { servicesFAQ } from "../data/faq";
 import { portfolioJobs } from "../data/portfolio";
 import { site } from "../data/site";
 
 const relatedJobs = portfolioJobs.slice(0, 2);
-const previewPhotos = ["sockets-switches.jpg", "outdoor-lighting.jpg", "general-repairs.jpg"]
+const previewPhotos = ["sockets-switches.jpg", "outdoor-lighting.jpg", "loft-attic.jpg"]
   .map((name) => getServiceCardImage(name))
   .filter(Boolean);
 
@@ -24,18 +22,17 @@ const sectionLinks = [
   { href: "#focus", label: "Focus areas" },
   { href: "#services", label: "All services" },
   { href: "#portfolio", label: "Portfolio" },
-  { href: "#faq", label: "FAQ" },
 ];
 ---
 
 <BaseLayout
   title="Handyman Services"
-  description={`Handyman and home improvement across ${site.areas.join(", ")} and the East Midlands: CCTV, lighting, HiFi, networks, tiling, furniture builds and general jobs. Not sure if it is listed? Get in touch.`}
+  description={`Handyman and home improvement based in ${site.areas.join(", ")}: loft boarding, indoor and outdoor lighting, sockets, switches, furniture builds and general jobs. Not sure if it is listed? Get in touch.`}
 >
   <PageHero
     eyebrow="Services"
     title="Handyman work, done properly"
-    description="General jobs around the home (tiling, IKEA builds, fittings and repairs), plus a real focus on CCTV, lighting, HiFi, networks and home tech."
+    description="General jobs around the home (IKEA builds, fittings and repairs), plus a real focus on loft boarding and lighting."
   >
     <nav class="mt-8 flex flex-wrap gap-2" aria-label="On this page">
       {
@@ -71,11 +68,10 @@ const sectionLinks = [
         <div class="lg:col-span-6" data-reveal>
           <p class="text-lg text-black/80 leading-relaxed">
             I take on most sensible handyman work. Some jobs are straightforward (a shelf, extra sockets, flat-pack
-            furniture); others need more planning, like CCTV runs, lighting layouts or sorting your WiFi and home
-            cloud properly.
+            furniture); others need more planning, like loft boarding or a proper outdoor lighting layout.
           </p>
           <p class="text-black/55 mt-4 leading-relaxed">
-            Everything below is a guide, not a hard list. If you are not sure whether I do it, ring or WhatsApp and
+            Everything below is a guide, not a hard list. If you are not sure whether I do it, give me a ring and
             ask.
           </p>
         </div>
@@ -114,9 +110,9 @@ const sectionLinks = [
         >
           <p class="text-volltar-orange text-xs font-bold uppercase tracking-wide">Specialty</p>
           <p class="font-display font-bold text-lg mt-2 group-hover:text-volltar-orange transition-colors">
-            CCTV, lighting &amp; home tech
+            Loft boarding &amp; lighting
           </p>
-          <p class="text-sm text-white/60 mt-2">Where tidy cabling and the right kit matter most.</p>
+          <p class="text-sm text-white/60 mt-2">Where tidy work and the right materials matter most.</p>
         </a>
         <a
           href="#services"
@@ -126,7 +122,7 @@ const sectionLinks = [
           <p class="font-display font-bold text-lg mt-2 group-hover:text-volltar-orange transition-colors">
             Everyday handyman jobs
           </p>
-          <p class="text-sm text-black/60 mt-2">Tiling, furniture builds, loft work, fittings and repairs.</p>
+          <p class="text-sm text-black/60 mt-2">Furniture builds, shelving, fittings and repairs.</p>
         </a>
       </div>
     </div>
@@ -187,14 +183,6 @@ const sectionLinks = [
       </div>
     </div>
   </section>
-
-  <div id="faq" class="scroll-mt-20">
-    <FAQList
-      items={servicesFAQ}
-      title="Services FAQ"
-      description="Common questions about the kind of work I take on."
-    />
-  </div>
 
   <CTABanner
     title="Got a job in mind?"

@@ -55,7 +55,7 @@ const jobHref = job ? `/portfolio/${job.slug}` : undefined;
               href={jobHref}
               class="mt-8 inline-flex items-center gap-2 rounded-lg bg-volltar-orange px-5 py-2.5 text-sm font-semibold text-volltar-black transition-colors hover:bg-volltar-orange-light"
             >
-              View {job?.location} CCTV install
+              View the {job?.location} case study
               <span aria-hidden="true">&rarr;</span>
             </a>
           )
@@ -77,7 +77,7 @@ const jobHref = job ? `/portfolio/${job.slug}` : undefined;
               <div class="absolute inset-0 bg-gradient-to-t from-volltar-black/50 via-transparent to-transparent pointer-events-none"></div>
               {job && (
                 <span class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-wide bg-volltar-orange text-volltar-black px-2.5 py-1 rounded-full">
-                  Real job: {job.location}
+                  {job.location}
                 </span>
               )}
             </div>

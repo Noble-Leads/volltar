@@ -7,7 +7,7 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Tell me about the job",
     description:
-      "Send a message, WhatsApp or email with a short description. Photos of the area or the problem are always helpful and make quoting faster.",
+      "Give me a call, or send a message with a short description. Photos of the area or the problem are always helpful and make quoting faster.",
   },
   {
     title: "Straightforward quote",

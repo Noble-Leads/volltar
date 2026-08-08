@@ -30,53 +30,6 @@ export type PortfolioJob = {
 
 export const portfolioJobs: PortfolioJob[] = [
   {
-    slug: "cctv-camera-install",
-    title: "Whole-Home CCTV & Network Install",
-    location: "Northampton",
-    serviceTag: "Smart Home, Lighting & CCTV",
-    summary:
-      "A full CCTV and wired network setup for a rental property, with labelled cabling, remote viewing and a tidy comms cupboard.",
-    image: "cctv-camera-install/photo-1.jpg",
-    completed: "2025",
-    facts: [
-      { label: "Service", value: "Smart Home & CCTV" },
-      { label: "Property", value: "Rental house" },
-      { label: "Location", value: "Northampton" },
-      { label: "Scope", value: "Cameras, network points & comms cupboard" },
-    ],
-    challenge:
-      "The owner of a rental property wanted proper security coverage of the entrances and garden, plus reliable wifi throughout the house. There was no structured cabling in place, so cameras, access points and network points all had to be run from scratch without leaving trailing wires or drilling more holes than necessary.",
-    approach: [
-      "I planned the camera positions around the entrances and garden first, then worked out the cleanest cable routes back to a central point. Cabling was run along the roofline and dressed neatly into the property so nothing was left hanging or exposed outside.",
-      "Inside, each run was terminated at labelled network points and brought back to a single comms cupboard. The switch, NVR and UniFi Protect gear were stacked and cable-managed so it is obvious what goes where if anything ever needs checking.",
-      "A ceiling-mounted access point was added to give strong, even wifi across the floors, wired back to the same cupboard rather than relying on a plug-in extender.",
-    ],
-    result:
-      "The property now has full CCTV coverage that can be viewed remotely, solid wifi throughout, and a comms cupboard that is clearly labelled and easy to maintain. Everything is wired in properly rather than bodged, so it will keep working reliably for tenants for years.",
-    gallery: [
-      {
-        src: "cctv-camera-install/photo-1.jpg",
-        alt: "External camera cabling routed neatly along the wall and dressed into the property",
-        caption: "Outdoor cabling run tight to the wall and fed cleanly through, with no trailing wires.",
-      },
-      {
-        src: "cctv-camera-install/photo-2.jpg",
-        alt: "Comms cupboard with labelled patch panel, network switch and CCTV recorder",
-        caption: "Central comms cupboard: labelled patch panel, switch and UniFi Protect recorder, all cable managed.",
-      },
-      {
-        src: "cctv-camera-install/photo-3.jpg",
-        alt: "Ceiling access point and wall network points fitted flush",
-        caption: "Wired access point for strong wifi, alongside flush-fitted network points.",
-      },
-      {
-        src: "cctv-camera-install/photo-4.jpg",
-        alt: "CCTV cabling clipped neatly along the loft joists",
-        caption: "In the loft, cable runs were clipped along the joists rather than left loose.",
-      },
-    ],
-  },
-  {
     slug: "outdoor-lighting-garage",
     title: "Garage Power & Four Outside Lights",
     location: "Northampton",
